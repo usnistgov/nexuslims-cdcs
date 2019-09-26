@@ -1,18 +1,10 @@
 {% load staticfiles %}
 
 <div id="footer">
-    <div class="d-flex">
-        <div class="mr-auto">
-            CDCS Version {% include "theme/footer/version.html" %}
+        <div><a href="https://nist.gov"><img src="{% static 'img/logo_nist_black.png' %}" alt="nist-logo" class="nist-logo"/></a></div>
+        <div style="float: right; text-align: right;">
+            Powered by:
+            <img src="{% static 'img/cdcs_logo.png' %}" alt="cdcs-logo" class="cdcs-logo"/>
+            <a href="https://github.com/usnistgov/mdcs">CDCS v. {% include "theme/footer/version.html" %}</a>
         </div>
-        <div id="footer-right" class="d-flex">
-            {% include 'core_website_app/user/footer_menu.html' %}
-            <span>
-                Powered by:
-                <img src="{% static 'img/cdcs_logo.png' %}" alt="cdcs-logo" class="cdcs-logo"/>
-                <a href="https://github.com/usnistgov/mdcs">CDCS</a>
-            </span>
-        </div>
-    </div>
-
 </div>

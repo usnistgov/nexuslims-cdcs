@@ -1,9 +1,11 @@
-<h2 id="available-options">Available Options</h2>
+<!-- <h2 id="available-options">Available Options</h2> -->
 {% for tile in tiles %}
-<div class="tile">
-    <div class="icon">
-        <i class="fa {{ tile.logo }}"></i>
-    </div>
+<div class="tile" id="{{ tile.id }}">
+    <a href="{{ tile.link }}">
+        <div class="icon">
+            <i class="fa {{ tile.logo }}"></i>
+        </div>
+    </a>
     <div class="text">
         <h3><a href="{{ tile.link }}">{{ tile.title }}</a></h3>
         <p>
@@ -11,4 +13,31 @@
         </p>
     </div>
 </div>
+
+<!-- Some javascript to enable fancy highlighting of the tiles -->
+<script>
+$(function() {
+    var yellow = '#f5c636';
+    var black = '#333';
+    var blue = '#11659c';
+  $('.tile#{{ tile.id }}').hover(function() {
+    $(this).css({'cursor': 'pointer',
+                 'background-color': '#efefef'});
+    $('.icon', this).css({'background-color': yellow,
+                    'color': black,
+                    'transition': 'all 0.3s ease-in-out'});
+    $('.text h3', this).css({'color': blue})
+  }, function() {
+    // on mouseout, reset the background colour
+    $('.icon', this).css({'background-color': '#11659c',
+                    'color': '#fff'});
+    $('.text h3', this).css({'color': black})
+    $(this).css({'cursor': 'inherit',
+                 'background-color': 'inherit'});
+  });
+  $('.tile#{{ tile.id }}').click(function(){
+    window.location.href = "{{ tile.link }}";
+  })
+});
+</script>
 {% endfor %}

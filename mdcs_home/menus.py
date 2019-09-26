@@ -37,35 +37,33 @@ from menu import Menu, MenuItem
 from core_main_app.utils.labels import get_form_label, get_data_label
 from mdcs.settings import CURATE_MENU_NAME
 
-Menu.add_item(
-    "nodropdown", MenuItem("Home", reverse("core_main_app_homepage"), icon="home")
-)
+# Menu.add_item(
+#     "nodropdown", MenuItem("Home", reverse("core_main_app_homepage"), icon="home")
+# )
 
 Menu.add_item("nodropdown", MenuItem(CURATE_MENU_NAME, reverse("core_curate_index")))
 Menu.add_item(
-    "explorer",
-    MenuItem("Search by Keyword", reverse("core_explore_keyword_app_search")),
+    "nodropdown", MenuItem("Create a Record", reverse("core_curate_index"))
+)
+Menu.add_item(
+    "nodropdown", MenuItem("Browse and Search Records", reverse("core_explore_keyword_app_search"))
 )
 
-Menu.add_item(
-    "explorer", MenuItem("Build a Custom Query", reverse("core_explore_example_index"))
-)
+# Menu.add_item(
+#     "explorer", MenuItem("Build a Custom Query", reverse("core_explore_example_index"))
+# )
 
-Menu.add_item(
-    "composer", MenuItem("Create New Template", reverse("core_composer_index"))
-)
+# Menu.add_item(
+#     "composer", MenuItem("Create New Template", reverse("core_composer_index"))
+# )
 
-Menu.add_item(
-    "composer",
-    MenuItem(
-        "My Templates", reverse("core_dashboard_templates"), require_authentication=True
-    ),
-)
+# Menu.add_item(
+#     "composer", MenuItem("My Templates", reverse("core_dashboard_templates"), require_authentication=True)
+# )
 
-Menu.add_item(
-    "composer",
-    MenuItem("My Types", reverse("core_dashboard_types"), require_authentication=True),
-)
+# Menu.add_item(
+#     "composer", MenuItem("My Types", reverse("core_dashboard_types"), require_authentication=True)
+# )
 
 Menu.items["dashboard"] = []
 Menu.add_item(

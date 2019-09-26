@@ -6,8 +6,8 @@
             <!-- Start MDCS title left -->
             <li id="cdcs-main" style="padding:0;">
                 <div id="cdcs-menu-title">
-                    <a href="https://cdcs.nist.gov/" title="Configurable Data Curation System (CDCS)">
-                        Materials Data Curation System
+                    <a href="/" title="NexusLIMS">
+                        <img src="{% static 'img/logo_horizontal.png' %}"/>
                     </a>
                 </div>
             </li>
@@ -21,9 +21,9 @@
                 <a href="{{ item.url }}">{% if item|get_attribute:'icon' %}<i class="fas fa-{{ item.icon }}"></i>{% endif %} {{ item.title }}</a>
             </li>
             {% endfor %}
-            <li class="nested">
+            <!-- <li class="nested">
                 <a href="#">
-                    Data Exploration <i class="fas fa-caret-down"></i></a>
+                    Browse and Search Records</a>
                 </a>
                 <ul>
                     {% generate_menu %}
@@ -31,8 +31,8 @@
                         <li><a href="{{ item.url }}" class="cdcs-menu-item">{% if item|get_attribute:'icon' %}<i class="fas fa-{{ item.icon }}"></i>{% endif %} {{ item.title }}</a></li>
                     {% endfor %}
                 </ul>
-            </li>
-            <li class="nested">
+            </li> -->
+            <!-- <li class="nested">
                 <a href="#">
                     Composer <i class="fas fa-caret-down"></i>
                 </a>
@@ -42,7 +42,7 @@
                         {% if not item|get_attribute:'require_authentication' or user.is_authenticated %}<li><a href="{{ item.url }}" class="cdcs-menu-item">{% if item|get_attribute:'icon' %}<i class="fas fa-{{ item.icon }}"></i>{% endif %} {{ item.title }}</a></li>{% endif %}
                     {% endfor %}
                 </ul>
-            </li>
+            </li> -->
             {% endblock %}
             <!-- End float right menu-->
 
@@ -74,7 +74,7 @@
                     <li><a href="{% url 'core_main_app_logout' %}" class="cdcs-menu-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
                 {% else %}
-                    <a href="{% url 'core_main_app_login' %}">
+                    <a class="btn-custom" href="{% url 'core_main_app_login' %}">
                         <i class="fas fa-sign-in-alt"></i> Log In / Sign Up
                     </a>
                 {% endif %}

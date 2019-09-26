@@ -22,15 +22,19 @@
     width: calc(100% - 3em);
     min-height: calc(100% - 151px);
     background-color: #fff;
-    margin: 0 1.5em;
-    padding: 4.5rem 1.5em 2.5em 1.5em;
+    margin: 0.5em 1.5em;
+    padding: 1.0em 1.5em 2.5em 1.5em;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
 }
 
 #page-wrapper {
-    height: inherit;
-    display: inline;
+    box-sizing: border-box;
+    min-height: 100%;
+    padding: 0 0 3em;
+    position: relative;
+    /* height: inherit; */
+    /* display: inline; */
 }
 
 .textarea_lock_h {

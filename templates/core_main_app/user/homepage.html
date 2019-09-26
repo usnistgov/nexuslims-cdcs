@@ -1,27 +1,34 @@
 {% load staticfiles %}
 <div class="row">
-    <div class="row justify-content-center" id="intro">
-        <div class="col-md-5">
-            <h2>{{ CUSTOM_TITLE }}</h2>
-            <p>
-                This system allows for the curation of Material Data in a repository using
-                predefined templates.
-            </p>
-            <p>
-                This is being developed at the National Institute of Standards and Technology and
-                is made available to solicit comments from the Material Science community. Please
-                do not enter any proprietary data into this system.
-            </p>
-        </div>
-        <div class="col-md-3">
-            <img id="mgi-diagram" src="{% static 'core_main_app/img/mgi_diagram.jpg' %}"
-                 alt="Material Genome Initiative diagram">
+    <div class="col-md-12">
+        <div class="row justify-content-center" id="intro" >
+            <div class="col-md-6 col-md-offset-1 vert-center-col">
+                <h2>Welcome to NexusLIMS!</h2>
+                <p>
+                    This laboratory information management system (LIMS) allows 
+                    for the automated creation and curation of microscopy experimental
+                    records using the schema co-developed by ODI and the MML 
+                    Electron Microscopy Nexus Facility.
+                </p>
+                <p> 
+                    Experimental records are automatically harvested from multiple
+                    data sources to facilitate browsing and searching of data
+                    collected from the varied instruments in the Nexus Facility.
+                    To get started, please choose from one of the options below:
+                </p>
+            </div>
+            <div class="col-md-3 vert-center-col hidden-xs hidden-sm">
+                <img class="img-responsive center-block"
+                     id="nexuslims-logo" 
+                     src="{% static 'core_main_app/img/logo_horizontal_text.png' %}"
+                     alt="NexusLIMS Logo">
+            </div>
         </div>
     </div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-md-5" id="tiles">
+    <div class="col-md-offset-1 col-md-5 col-md-offset-1" id="tiles">
     </div>
-    <div class="col-md-5" id="templates">
-    </div>
+    <!-- <div class="col-md-5" id="templates">
+    </div> -->
 </div>
