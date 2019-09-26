@@ -2,10 +2,10 @@
 {% load menu %}
 
 <div id="footer">
-        <div>CDCS Version {% include "theme/footer/version.html" %}</div>
+        <div><a href="https://nist.gov"><img src="{% static 'img/logo_nist_black.png' %}" alt="nist-logo" class="nist-logo"/></a></div>
         <div style="float: right; text-align: right;">
             Powered by:
             <img src="{% static 'img/cdcs_logo.png' %}" alt="cdcs-logo" class="cdcs-logo"/>
-            <a href="https://github.com/usnistgov/mdcs">CDCS</a>
+            <a href="https://github.com/usnistgov/mdcs">CDCS v. {% include "theme/footer/version.html" %}</a>
         </div>
 </div>

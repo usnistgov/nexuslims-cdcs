@@ -1,16 +1,16 @@
 .btn-custom {
-    color: #c0c0c0;
-    background-color: #563920;
+    color: white;
+    background-color: #11659c;
     border-radius: 10px;
     background-size: 0em;
     font-size: inherit;
-    line-height: 0.5em;
-    margin: 0.2em 0 0.2em 0
+    line-height: 1.2em;
+    margin: 0.6em auto;
 }
 
 .btn-custom:hover {
-    color: #fff;
-    background-color: rgb(195, 125, 45);
-    transition: color 0.2s ease-in-out
+    color: #333 !important;
+    background-color: #f5c636 !important;
+    transition: all 0.3s ease-in-out !important;
 }
 

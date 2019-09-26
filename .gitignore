@@ -237,3 +237,9 @@ radon.xml
 
 #virtual env
 venv/
+
+logfile*
+celerybeat-schedule
+static.prod/
+certs/
+django-mongoengine/
