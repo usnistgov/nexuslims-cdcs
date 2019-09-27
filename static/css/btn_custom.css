@@ -1,5 +1,5 @@
 .btn-custom {
-    color: white;
+    color: white !important;
     background-color: #11659c;
     border-radius: 10px;
     background-size: 0em;
