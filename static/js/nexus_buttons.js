@@ -41,6 +41,8 @@ setSidebarTooltipTop = function() {
 }
 
 $( document ).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip(); // toggle all tooltips with default
+    
     // add listener to edit record button after the document is ready
     $("#edit-record-btn").on('click', openEditRecord);
     $("#edit-record-btn[data-toggle=tooltip]").tooltip();
