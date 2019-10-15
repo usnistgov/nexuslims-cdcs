@@ -2692,8 +2692,12 @@
 
 		/* Basic */
 
-			html, body {
+			html {
 				overflow-x: hidden;
+			}
+
+			body {  /* override from default to prevent scroll detection from breaking window.onscroll */
+				overflow-x: visible;
 			}
 
 			body, input, select, textarea {
