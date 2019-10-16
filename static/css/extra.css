@@ -161,6 +161,24 @@ button.search_button {
     font-weight: bold;
 }
 
+/* Fixes for bootstrap bug creating line down middle of button
+   on hovering: https://github.com/twbs/bootstrap/issues/4233 */
+.btn-success:hover {
+    background: #419641;
+}
+.btn-warning:hover {
+    background: #eb9316;
+}
+.btn-default:hover {
+    background: #e0e0e0;
+}
+.btn-danger:hover {
+    background: #c12e2a;
+}
+.btn-info:hover {
+    background: #2aabd2;
+}
+
 i#search_icon {
     margin-right: 0.5em;
 }
