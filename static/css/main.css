@@ -1811,7 +1811,7 @@
 		background: #f7f7f7 url("../img/bg01.png");
 	}
 
-		body.is-loading * {
+		/* body.is-loading * {
 			-moz-transition: none !important;
 			-webkit-transition: none !important;
 			-ms-transition: none !important;
@@ -1820,7 +1820,7 @@
 			-webkit-animation: none !important;
 			-ms-animation: none !important;
 			animation: none !important;
-		}
+		} */
 
 	body, input, select, textarea {
 		color: #474747;
