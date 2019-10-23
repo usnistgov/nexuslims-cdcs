@@ -14,7 +14,8 @@ openEditRecord = function() {
             "id": objectID
         },
         success: function(data){
-            window.location = data.url;
+            // window.location = data.url;
+            window.open(data.url, '_blank')
         },
         error:function(data){
             var myArr = JSON.parse(data.responseText);
