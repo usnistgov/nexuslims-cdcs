@@ -42,7 +42,10 @@ setSidebarTooltipTop = function() {
 }
 
 $( document ).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip(); // toggle all tooltips with default
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger: 'hover'
+    }); // toggle all tooltips with defaults, except make trigger just hover instead of
+        // hover+focus, so they don't stay up after click
     
     // add listener to edit record button after the document is ready
     $("#edit-record-btn").on('click', openEditRecord);
@@ -54,7 +57,7 @@ $( document ).ready(function() {
         template: '<div class="tooltip sidebar-btn-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
     }
     );
-    $("#sidebar-btn").on('hover focus', setSidebarTooltipTop);
+    $("#sidebar-btn").on('hover', setSidebarTooltipTop);
 
     // add listener to everywhere but sidebar to remove side-expanded class when clicking outside
     $(document).on("click", function(e) {
