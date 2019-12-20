@@ -47,6 +47,12 @@ Menu.add_item(
     "nodropdown", MenuItem("Browse and Search Records", reverse("core_explore_keyword_app_search"))
 )
 
+Menu.add_item(
+    "nodropdown",
+    MenuItem("Sharepoint Calendar", 
+             "https://share.nist.gov/sites/MML/Div/msed/MSED-MMF/default.aspx")
+)
+
 # Menu.add_item(
 #     "explorer", MenuItem("Build a Custom Query", reverse("core_explore_example_index"))
 # )
