@@ -52,7 +52,7 @@ Menu.add_item(
 Menu.add_item(
     "nodropdown",
     MenuItem("Sharepoint Calendar", 
-             "https://share.nist.gov/sites/MML/Div/msed/MSED-MMF/default.aspx")
+             "https://mmlshare.nist.gov/Div/msed/MSED-MMF/default.aspx")
 )
 
 # Menu.add_item(
