@@ -75,6 +75,9 @@ else:
 BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = REDIS_URL
 
+# set default sorting option to be most recent records first:
+DATA_SORTING_FIELDS = ["-last_modification_date", "title", "template"]
+
 # Application definition
 
 INSTALLED_APPS = (
