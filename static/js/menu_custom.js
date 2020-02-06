@@ -3,7 +3,7 @@
 
 // link in top bar:
 $('nav#nav a[href*="msed/MSED-MMF/default.aspx"]').replaceWith(
-    '<a target="_blank" href="https://share.nist.gov/sites/MML/Div/msed/MSED-MMF/default.aspx"><i class="fa fa-calendar"></i><span style="margin-right:5px;"></span>Sharepoint Calendar</a>'
+    '<a target="_blank" href="https://mmlshare.nist.gov/Div/msed/MSED-MMF/default.aspx"><i class="fa fa-calendar"></i><span style="margin-right:5px;"></span>Sharepoint Calendar</a>'
 )
 
 $(document).ready(function() {
