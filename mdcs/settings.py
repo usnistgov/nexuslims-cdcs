@@ -31,6 +31,9 @@ MENU_SELECT_PARENTS = False
 
 CURATE_MENU_NAME = 'Data Curation'
 
+# set default sorting option to be most recent records first:
+DATA_SORTING_FIELDS = ["-last_modification_date", "title", "template"]
+
 # Application definition
 
 INSTALLED_APPS = (
