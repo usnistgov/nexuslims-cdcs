@@ -64,7 +64,7 @@ def tiles(request):
             "id": "curator"
         }
 
-        context["tiles"].append(curate_tile)
+        # context["tiles"].append(curate_tile)
 
     if "core_composer_app" in installed_apps:
         compose_tile = {
