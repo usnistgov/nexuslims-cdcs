@@ -41,10 +41,9 @@ from mdcs.settings import CURATE_MENU_NAME
 #     "nodropdown", MenuItem("Home", reverse("core_main_app_homepage"), icon="home")
 # )
 
-Menu.add_item("nodropdown", MenuItem(CURATE_MENU_NAME, reverse("core_curate_index")))
-Menu.add_item(
-    "nodropdown", MenuItem("Create a Record", reverse("core_curate_index"))
-)
+# Menu.add_item(
+#     "nodropdown", MenuItem("Create a Record", reverse("core_curate_index"))
+# )
 Menu.add_item(
     "nodropdown", MenuItem("Browse and Search Records", reverse("core_explore_keyword_app_search"))
 )
