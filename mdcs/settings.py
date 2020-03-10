@@ -97,6 +97,10 @@ INSTALLED_APPS = (
     "tz_detect",
     "defender",
     "captcha",
+
+    # Local apps
+    "mdcs_home",
+
     # Core apps
     "core_main_app",
     "core_exporters_app",
@@ -129,8 +133,6 @@ INSTALLED_APPS = (
     "core_module_chemical_composition_app",
     "core_module_chemical_composition_simple_app",
     "core_module_text_area_app",
-    # Local apps
-    "mdcs_home",
 )
 
 MIDDLEWARE = (
