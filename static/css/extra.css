@@ -31,6 +31,16 @@
     color: #a94442;
 }
 
+/* Loading placeholder styling  */
+div#results > div > ul.nav.nav-tabs {
+    text-align: center;
+}
+span#loading-placeholder {
+    color:#a94442;
+    display: inline-block;
+    font-style: italic;
+}
+
 /*Bootstrap overide*/
 .badge {
     background-color: #505050;
