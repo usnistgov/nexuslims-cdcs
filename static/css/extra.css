@@ -119,10 +119,6 @@ i.results-icon {
     background-color: #eee;
 }
 
-button#edit-record-btn, button#previous-page-btn {
-    margin: 0.25em;
-}
-
 button.search_button {
     width: 100%;
     display: block;
