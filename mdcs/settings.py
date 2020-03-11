@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 MENU_SELECT_PARENTS = False
+DOCUMENTATION_LINK = "http://nexuslims.ipages.nist.gov/NexusMicroscopyLIMS/doc"
 
 CURATE_MENU_NAME = 'Data Curation'
 
