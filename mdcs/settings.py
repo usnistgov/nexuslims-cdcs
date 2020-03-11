@@ -31,6 +31,8 @@ ALLOWED_HOSTS = (
     os.environ["ALLOWED_HOSTS"].split(",") if "ALLOWED_HOSTS" in os.environ else []
 )
 
+DOCUMENTATION_LINK = "http://***REMOVED***/NexusMicroscopyLIMS/doc"
+
 # Databases
 
 DATABASES = {
