@@ -53,3 +53,15 @@ li.divider {
     opacity: 0.4;
     filter: alpha(opacity=40); /* msie */
 }
+
+a.cdcs-menu-item {
+    padding-right: 0.5em;
+}
+
+a.cdcs-menu-item > i.fa {
+    margin-right: 0.5em;
+}
+
+i.menu-fa {
+    margin-right: 0.35em;
+}
