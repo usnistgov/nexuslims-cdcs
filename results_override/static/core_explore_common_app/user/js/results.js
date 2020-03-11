@@ -1,7 +1,3 @@
-// This file is identical to core_explore_common_app/user/js/results.js,
-// but overrides get_data_source_results() to remove the custom loading
-// placeholder and add some fadein/fadeout sugar
-
 /**
  * Get data sources results html holders
  */
@@ -246,6 +242,7 @@ var get_data_source_results = function(result_page, data_source_url, order_by_fi
         }
     });
 };
+
 
 
 /**
