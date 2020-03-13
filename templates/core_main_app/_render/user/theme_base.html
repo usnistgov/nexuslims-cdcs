@@ -25,9 +25,8 @@
         <link rel="stylesheet" href="{% static 'core_main_app/common/css/table.css' %}" />
         <link rel="stylesheet" href="{% static 'core_main_app/common/css/buttons.css' %}" />
 
-        <!-- NeuxLIMS add datatables -->
-        <link rel="stylesheet" type="text/css" href="{% static 'libs/datatables/1.10.18/datatables.min.css' %}">
-
+        <!-- NexusLIMS add datatables -->
+        <link rel="stylesheet" type="text/css" href="{% static 'libs/datatables/datatables.min.css' %}">
 
         {% if DISPLAY_NIST_HEADERS %}
         <link rel="stylesheet" href="https://pages.nist.gov/nist-header-footer/css/nist-combined.css">
@@ -42,9 +41,8 @@
     <script src="{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.js' %}"></script>
     <script src="{% static 'core_main_app/libs/bootstrap/3.3.7/js/bootstrap.js' %}"></script>
 
-    <!-- NeuxLIMS add datatables -->
-    <script type="text/javascript" charset="utf8" src="{% static 'libs/datatables/1.10.18/datatables.min.js' %}"></script>
-
+    <!-- NexusLIMS add datatables -->
+    <script type="text/javascript" charset="utf8" src="{% static 'libs/datatables/datatables.min.js' %}"></script>
     {% block body %}{% endblock %}
     {% block app_modals %}{% endblock %}
 
