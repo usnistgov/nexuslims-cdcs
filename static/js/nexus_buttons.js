@@ -35,8 +35,8 @@ openSidebar = function() {
 }
 
 setSidebarTooltipTop = function() {
-    var tip = $('.sidebar-btn-tooltip');
-    var btn = $('#sidebar-btn');
+    var tip = $('.btn-sidebar-tooltip');
+    var btn = $('#btn-sidebar');
 
     tip.css('top', parseInt(btn.css('top'), 10) + btn.height()/2 - tip.height()/2);
 }
@@ -48,21 +48,21 @@ $( document ).ready(function() {
         // hover+focus, so they don't stay up after click
     
     // add listener to edit record button after the document is ready
-    $("#edit-record-btn").on('click', openEditRecord);
-    $("#edit-record-btn[data-toggle=tooltip]").tooltip();
+    $("#btn-edit-record").on('click', openEditRecord);
+    $("#btn-edit-record[data-toggle=tooltip]").tooltip();
 
     // add expanded class to sidebar when expand button is clicked
-    $("#sidebar-btn").on('click', openSidebar);
-    $('#sidebar-btn[data-toggle="tooltip"]').tooltip({
-        template: '<div class="tooltip sidebar-btn-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+    $("#btn-sidebar").on('click', openSidebar);
+    $('#btn-sidebar[data-toggle="tooltip"]').tooltip({
+        template: '<div class="tooltip btn-sidebar-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
     }
     );
-    $("#sidebar-btn").on('hover', setSidebarTooltipTop);
+    $("#btn-sidebar").on('hover', setSidebarTooltipTop);
 
     // add listener to everywhere but sidebar to remove side-expanded class when clicking outside
     $(document).on("click", function(e) {
         var target = $(e.target);
-        if (target.is(".sidebar, #sidebar-btn i")) {
+        if (target.is(".sidebar, #btn-sidebar i")) {
             null; // we clicked either the sidebar button, or the sidebar itself, so do nothing
         } else if (target.parents('ul.pagination').length) {
             null; // we clicked in the pagination box, which changes it so it no longer is inside the .sidebar class, so do nothing
