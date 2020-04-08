@@ -109,15 +109,21 @@ Menu.add_item(
 )
 
 Menu.add_item(
+    "nodropdown", MenuItem("Tutorial", 
+                     "#",
+                     icon="question-circle")
+)
+
+Menu.add_item(
     "help", MenuItem("NexusLIMS Documentation", 
                      DOCUMENTATION_LINK,
-                     icon="question-circle")
+                     icon="book")
 )
 
 Menu.add_item(
     "help", MenuItem("API Documentation", reverse("swagger_view"), icon="cogs")
 )
 
-Menu.add_item(
-    "help", MenuItem("Contact", reverse("core_website_app_contact"), icon="envelope")
-)
+# Menu.add_item(
+#     "help", MenuItem("Contact", reverse("core_website_app_contact"), icon="envelope")
+# )
