@@ -14,16 +14,15 @@
     <title>{% block title %}{% endblock %}</title>
 
     {% block core_css %}
-        <link rel="stylesheet" href="{% static 'core_main_app/libs/bootstrap/3.3.7/css/bootstrap.css' %}" />
-        <link rel="stylesheet" href="{% static 'core_main_app/libs/font-awesome/4.7.0/css/font-awesome.css' %}" />
+        <link rel="stylesheet" href="{% static 'core_main_app/libs/bootstrap/4.5.2/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'core_main_app/libs/font-awesome/5.13.0/css/all.min.css' %}" />
         <link rel="stylesheet" href="{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.css' %}" />
         <link rel="stylesheet" href="{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.structure.css' %}" />
         <link rel="stylesheet" href="{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.theme.css' %}" />
-        <link rel="stylesheet" href="{% static 'core_main_app/libs/bootstrap/3.3.7/css/bootstrap-theme.css' %}" />
-        <link rel="stylesheet" href="{% static 'core_main_app/common/css/patch.css' %}" />
         <link rel="stylesheet" href="{% static 'core_main_app/common/css/word-wrap.css' %}" />
         <link rel="stylesheet" href="{% static 'core_main_app/common/css/table.css' %}" />
         <link rel="stylesheet" href="{% static 'core_main_app/common/css/buttons.css' %}" />
+        <link rel="stylesheet" href="{% static 'core_main_app/common/css/fields.css' %}" />
 
         <!-- NexusLIMS add custom library styles -->
         <link rel="stylesheet" type="text/css" href="{% static 'libs/datatables/datatables.min.css' %}">
@@ -37,9 +36,10 @@
 </head>
 <body>
     <!-- Move javascript loads to front of file instead of the end so they can be used by the XSLT -->
-    <script src="{% static 'core_main_app/libs/jquery/3.1.1/jquery.js' %}"></script>
+    <script src="{% static 'core_main_app/libs/jquery/3.5.1/jquery.js' %}"></script>
     <script src="{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.js' %}"></script>
-    <script src="{% static 'core_main_app/libs/bootstrap/3.3.7/js/bootstrap.js' %}"></script>
+    <script src="{% static 'core_main_app/libs/popper-js/popper.min.js' %}"></script>
+    <script src="{% static 'core_main_app/libs/bootstrap/4.5.2/js/bootstrap.min.js' %}"></script>
 
     <!-- NexusLIMS add datatables and other libraries -->
     <script type="text/javascript" charset="utf8" src="{% static 'libs/datatables/datatables.min.js' %}"></script>
@@ -57,6 +57,7 @@
 
     {% block core_js %}
         <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
+        <script src="{% static 'core_main_app/common/js/leave_notice.js' %}"></script>
         {% if DISPLAY_NIST_HEADERS %}
         <script src="https://pages.nist.gov/nist-header-footer/js/nist-header-footer.js" type="text/javascript" defer="defer"></script>
         {% endif %}

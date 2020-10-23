@@ -1,9 +1,16 @@
 {% load staticfiles %}
 
 <div id="footer">
-        <div><a href="https://nist.gov"><img src="{% static 'img/logo_nist_black.png' %}" alt="nist-logo" class="nist-logo"/></a></div>
-        <div style="float: right; text-align: right;">
-            Powered by:
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="p-1 pl-3">
+            <a href="https://nist.gov">
+                <img src="{% static 'img/logo_nist_black.png' %}" alt="nist-logo" class="nist-logo"/>
+            </a>
+        </div>
+        <div class="p-1 pr-3">
+            <a class="small" href="{% url "core_website_app_terms" %}" style="margin-right: 0.5em;">Terms of Use</a>
+            <span>|</span>
+            <span style="margin-left: 0.5em;">Powered by:</span>
             <img src="{% static 'img/cdcs_logo.png' %}" alt="cdcs-logo" class="cdcs-logo"/>
             <a href="https://github.com/usnistgov/mdcs">CDCS v. {% include "theme/footer/version.html" %}</a>
         </div>

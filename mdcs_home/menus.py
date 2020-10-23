@@ -49,14 +49,16 @@ Menu.add_item(
     "nodropdown", 
     MenuItem("Browse and Search Records", 
              reverse("core_explore_keyword_app_search"),
-             icon="search")
+             icon="search",
+             iconClass="fas")
 )
 
 Menu.add_item(
     "nodropdown",
     MenuItem("Sharepoint Calendar", 
              "https://mmlshare.nist.gov/Div/msed/MSED-MMF/default.aspx",
-             icon="calendar")
+             icon="calendar-alt",
+             iconClass="far")
 )
 
 # Menu.add_item(
@@ -78,7 +80,7 @@ Menu.add_item(
 Menu.items["dashboard"] = []
 Menu.add_item(
     "dashboard",
-    MenuItem("My Workspaces", reverse("core_dashboard_workspaces"), icon="folder-open"),
+    MenuItem("My Workspaces", reverse("core_dashboard_workspaces"), icon="folder-open", iconClass="fas"),
 )
 
 Menu.add_item(
@@ -87,6 +89,7 @@ Menu.add_item(
         "My {0}s".format(get_data_label().title()),
         reverse("core_dashboard_records"),
         icon="file-alt",
+        iconClass="fas"
     ),
 )
 
@@ -96,11 +99,12 @@ Menu.add_item(
         "My {0}s".format(get_form_label().title()),
         reverse("core_dashboard_forms"),
         icon="file-alt",
+        iconClass="fas"
     ),
 )
 
 Menu.add_item(
-    "dashboard", MenuItem("My Files", reverse("core_dashboard_files"), icon="file")
+    "dashboard", MenuItem("My Files", reverse("core_dashboard_files"), icon="file-alt", iconClass="fas")
 )
 
 Menu.add_item(
@@ -111,17 +115,19 @@ Menu.add_item(
 Menu.add_item(
     "nodropdown", MenuItem("Tutorial", 
                      "#",
-                     icon="question-circle")
+                     icon="question-circle",
+                     iconClass="fas")
 )
 
 Menu.add_item(
     "help", MenuItem("NexusLIMS Documentation", 
                      DOCUMENTATION_LINK,
-                     icon="book")
+                     icon="book",
+                     iconClass="fas")
 )
 
 Menu.add_item(
-    "help", MenuItem("API Documentation", reverse("swagger_view"), icon="cogs")
+    "help", MenuItem("API Documentation", reverse("swagger_view"), icon="cogs", iconClass="fas")
 )
 
 # Menu.add_item(
