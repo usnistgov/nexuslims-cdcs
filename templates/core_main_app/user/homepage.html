@@ -1,33 +1,29 @@
 {% load staticfiles %}
-<div class="row">
-    <div class="col-md-12">
-        <div class="row justify-content-center" id="intro">
-            <div class="col-md-6 col-md-offset-1 vert-center-col">
-                <h2>Welcome to NexusLIMS!</h2>
-                <p>
-                    This laboratory information management system (LIMS) allows
-                    for the automated creation and curation of microscopy
-                    experimental records using the schema co-developed by ODI
-                    and the MML Electron Microscopy Nexus Facility. Experimental
-                    records are automatically harvested from multiple data
-                    sources to facilitate browsing and searching of data
-                    collected from the varied instruments in the Nexus Facility.
-                </p>
-                <p>
-                    To learn more about how to use NexusLIMS, please take the 
-                    <a id="homepage-tutorial" href="#">interactive tutorial</a>, 
-                    or visit the 
-                    <a href="{{ DOCUMENTATION_LINK }}" target="_blank">documentation page</a>.
-                    To get started, please click the link below to start
-                    browsing experimental records:
-                </p>
-            </div>
-            <div class="col-md-3 vert-center-col hidden-xs hidden-sm">
-                <img class="img-responsive center-block" id="nexuslims-logo" 
-                     src="{% static 'core_main_app/img/logo_horizontal_text.png' %}" 
-                     alt="NexusLIMS Logo">
-            </div>
-        </div>
+<div class="row align-items-center">
+    <div class="col offset-md-1">
+        <h2>{{ CUSTOM_TITLE }}</h2>
+        <p>
+            This laboratory information management system (LIMS) allows
+            for the automated creation and curation of microscopy
+            experimental records using the schema co-developed by ODI
+            and the MML Electron Microscopy Nexus Facility. Experimental
+            records are automatically harvested from multiple data
+            sources to facilitate browsing and searching of data
+            collected from the varied instruments in the Nexus Facility.
+        </p>
+        <p>
+            To learn more about how to use NexusLIMS, please take the 
+            <a id="homepage-tutorial" href="#">interactive tutorial</a>, 
+            or visit the 
+            <a href="{{ DOCUMENTATION_LINK }}" target="_blank">documentation page</a>.
+            To get started, please click the link below to start
+            browsing experimental records:
+        </p>
+    </div>
+    <div class="col-4 mr-5">
+        <img class="img-responsive center-block" id="nexuslims-logo" 
+                src="{% static 'core_main_app/img/logo_horizontal_text.png' %}" 
+                alt="NexusLIMS Logo">
     </div>
 </div>
 <div class="row justify-content-center">
