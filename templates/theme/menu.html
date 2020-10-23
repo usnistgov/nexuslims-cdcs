@@ -18,7 +18,7 @@
             {% generate_menu %}
             {% for item in menus.nodropdown %}
             <li>
-                <a href="{{ item.url }}">{% if item|get_attribute:'icon' %}<i class="fa fa-{{ item.icon }} menu-fa"></i>{% endif %} {{ item.title }}</a>
+                <a href="{{ item.url }}">{% if item|get_attribute:'icon' %}<i class="{{ item.iconClass }} fa-{{ item.icon }} menu-fa"></i>{% endif %} {{ item.title }}</a>
             </li>
             {% endfor %}
             <!-- <li class="nested">
@@ -50,7 +50,7 @@
             <li class="nested float-right">
                 {% if user.is_authenticated %}
                 <a href="#">
-                    <i class="fa fa-user-circle-o menu-fa"></i> {{ user }} <i class="fa fa-caret-down"></i>
+                    <i class="fas fa-user-circle menu-fa"></i> {{ user }} <i class="fa fa-caret-down"></i>
                 </a>
                 <ul>
                     {% block dashboard_menu %}
@@ -71,7 +71,7 @@
                     {% if user.is_staff %}
                     <li><a href="{% url 'admin:core_main_app_admin_home' %}" class="cdcs-menu-item"><i class="fa fa-cog menu-fa"></i> Administration</a></li>
                     {% endif %}
-                    <li><a href="{% url 'core_main_app_logout' %}" class="cdcs-menu-item"><i class="fa fa-sign-out menu-fa"></i> Logout</a></li>
+                    <li><a href="{% url 'core_main_app_logout' %}" class="cdcs-menu-item"><i class="fa fa-sign-out-alt menu-fa"></i> Logout</a></li>
                 </ul>
                 {% else %}
                     <a class="btn-custom" href="{% url 'core_main_app_login' %}">
@@ -81,7 +81,7 @@
             </li>
             <li class="nested float-right">
                 <a href="#">
-                    Help <i class="fa fa-caret-down menu-fa"></i>
+                    <i class="far fa-life-ring menu-fa"></i> Help <i class="fa fa-caret-down menu-fa"></i>
                 </a>
                 <ul>
                     {% generate_menu %}
