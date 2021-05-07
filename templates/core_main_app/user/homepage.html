@@ -1,6 +1,7 @@
 {% load staticfiles %}
-<div class="row align-items-center">
-    <div class="col offset-md-1">
+<div class="row align-items-center"
+     style="margin-top: 1em;">
+    <div class="col-md offset-md-1">
         <h2>{{ CUSTOM_TITLE }}</h2>
         <p>
             This laboratory information management system (LIMS) allows
@@ -20,14 +21,15 @@
             browsing experimental records:
         </p>
     </div>
-    <div class="col-4 mr-5">
+    <div class="col-md-3">
         <img class="img-responsive center-block" id="nexuslims-logo" 
                 src="{% static 'core_main_app/img/logo_horizontal_text.png' %}" 
                 alt="NexusLIMS Logo">
     </div>
+    <div class="col-md-1"></div>
 </div>
 <div class="row" style='margin-top: 0;'>
-    <div class="col-6 offset-md-1 mr-5" id="tiles">
+    <div class="col-md-10 offset-md-1" id="tiles">
     </div>
     <!-- <div class="col-md-5" id="templates">
     </div> -->
