@@ -9,7 +9,7 @@
                    type="checkbox" value="{{ result.access_data_url }}"
                    class="exporter-checkbox{% if not exporter_app %} hidden{% endif %}"/>
             <div class='xmlResult' readonly='true'>
-                {% render_as_template xml_representation %}
+                {{ xml_representation }}
             </div>
             {% comment %}
             <span class="expand" onclick="showhideResult(event);"></span>
