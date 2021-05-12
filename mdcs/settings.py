@@ -99,7 +99,9 @@ INSTALLED_APPS = (
     "tz_detect",
     "defender",
     "captcha",
-
+    
+    # Local apps
+    "mdcs_home",
     # Override for results.js
     "results_override",
 
@@ -135,10 +137,6 @@ INSTALLED_APPS = (
     "core_module_chemical_composition_app",
     "core_module_chemical_composition_simple_app",
     "core_module_text_area_app",
-    
-    # Local apps
-    "mdcs_home",
-
 )
 
 MIDDLEWARE = (
