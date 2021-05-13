@@ -99,14 +99,15 @@ INSTALLED_APPS = (
     "tz_detect",
     "defender",
     "captcha",
+
+    # Core apps
+    "core_main_app",
     
     # Local apps
     "mdcs_home",
     # Override for results.js
     "results_override",
 
-    # Core apps
-    "core_main_app",
     "core_exporters_app",
     "core_exporters_app.exporters.xsl",
     "core_website_app",
