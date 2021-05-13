@@ -155,3 +155,21 @@ span.expand {
     height: 24px;
     width: 24px;
 }
+
+.explore-bar {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.25em;
+    margin-bottom: .25em;
+    width: 100%;
+}
+
+.toggle-container label {
+    display: inherit !important;
+    vertical-align: unset !important;
+}
+
+#loading-placeholder {
+    flex-grow: 1;
+    text-align: left;
+}
