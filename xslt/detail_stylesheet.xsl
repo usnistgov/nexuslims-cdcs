@@ -1721,7 +1721,7 @@
                     </div>
                 </xsl:for-each>
                 <div id="filelist-modal" class="modal">
-                    <div class="modal-content">
+                    <div class="modal-content" style="width: 65vw;">
                         <div class="modal-body">
                             <div class="row filelist-header-row">
                                 <div class="col-xs-10" style="flex-grow: 1;">
@@ -1753,7 +1753,7 @@
 <!-- Do not indent this text, as it affects the tooltip display -->                                            
 This window shows all the datasets identified as part of this record.
 
-Rows of the table can be selected using the mouse, holding down Ctrl or Shift to select multiple rows.
+Rows of the table can be selected by clicking anywhere within the row with the mouse.
 
 The files (and metadata) associated with the selected datasets can be downloaded by clicking on the "Download selected" or "Download all" button (warning, this may take some time for large amounts of data). You can close this dialogue (but not the browser tab!) while the download is processing without interrupting its progress. Do not navigate away from the page, or the download will cancel!
 
@@ -1766,7 +1766,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                             <!-- Download progressbar row ((hidden by default by jQuery) -->
                             <div id='progressbar-row' class='row'>
                                 <div class='col-xs-12 w-100' style="">
-                                    <div class="progress" id="progress_bar">
+                                    <div class="progress mb-1" id="progress_bar">
                                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                                             0%
                                         </div>
@@ -1775,7 +1775,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                             </div>
                             <!-- Download cancel button row (hidden by default by jQuery) -->
                             <div id='btn-cancel-row' class='row'>
-                                <div class='col-xs-12 w-100'>
+                                <div class='col-xs-12 w-100 mt-0 mb-0'>
                                     <button id="btn-cancel-dl" class="btn btn-danger" type="button"
                                             data-toggle="tooltip" data-placement="right" 
                                             title="Canceling the download through the browser will not work, so be sure to use this button to actually stop the file transfer"><i class='fa fa-ban menu-fa' aria-hidden="true"/><span>Cancel download</span></button> 
@@ -1783,21 +1783,22 @@ The textual data from the selected rows (not the actual files) can also be expor
                             </div>
                             <!-- Download result text row (hidden by default by jQuery) -->
                             <div id='dl-result-row' class='row'>
-                                <div class='col-xs-12 w-100 mt-1 mb-1' style="">
-                                    <p id="download-result"></p>
+                                <div class='col-xs-12 w-100 mt-0 mb-0' style="">
+                                    <p id="download-result" class="mt-1 mb-1"></p>
                                 </div>
                             </div>
                             <!-- Download extra message row (hidden by default by jQuery) -->
                             <div id='dl-extra-row' class='row'>
-                                <div class='col-xs-12 w-100 mt-1 mb-1' style="">
-                                    <p id="download-extra"></p>
+                                <div class='col-xs-12 w-100 mt-0 mb-0' style="">
+                                    <p id="download-extra" class="mt-1 mb-1"></p>
                                 </div>
                             </div>
-                            <div class="row mt-1">
-                                <div class='col-xs-12 pt-0'>
+                            <div class="row mt-0">
+                                <div class='col-xs-12 pt-0 w-100'>
                                     <!-- Generate the table with setup conditions for each acquisition activity -->
                                     <table id="filelist-table" 
-                                           class="table table-condensed table-hover filelist-table compact" 
+                                           class="table table-condensed table-hover filelist-table compact mt-0" 
+                                           width="100%"
                                            border="1" style="">
                                         <thead>
                                             <tr>
@@ -2877,18 +2878,18 @@ The textual data from the selected rows (not the actual files) can also be expor
                         // set message width to that of the table (sometimes the
                         // table doesn't get rendered quite fast enough, so make
                         // sure width is at least 500 px
-                        let w = Math.max($('#filelist-table').width(), 500);
+                        //let w = Math.max($('#filelist-table').width(), 500);
                         
                         $("#download-extra").closest('.row').slideDown();
                         $("#download-extra")
                         .removeClass('alert-warning alert-success alert-info alert-danger')
                         .addClass("alert alert-" + type)
                         .text(text);
-                        $( "#download-extra" ).width(w);
+                        //$( "#download-extra" ).width(w);
                         // resize this element everytime the window is changed
-                        $(window).resize(function() {
-                            $( "#download-extra" ).width($('#download-result').width());
-                        });
+                        //$(window).resize(function() {
+                        //    $( "#download-extra" ).width($('#download-result').width());
+                        //});
                     }
                     function hideExtraMessage() {
                         $("#download-extra").closest('.row').slideUp();
@@ -3625,7 +3626,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                     
                     // DataTables for filelist-modal table
                     var filelist_dt = $('table#filelist-table').DataTable({
-                        dom: "<'row'<'col-sm-6'f><'col-sm-6'p>><'row'<'#button-col.col-sm-12 text-center'B>><'row'<'col-sm-12't>><'#filelist_info_row.row'<'col-sm-12'i>>",
+                        dom: "<'row'<'col-sm-6'f><'col-sm-6'p>><'row'<'#button-col.col-sm-12 text-center'B>><'row'<'col-sm-12 w-100't>><'#filelist_info_row.row'<'col-sm-12'i>>",
                         ordering: false,
                         buttons: [
                             { 
