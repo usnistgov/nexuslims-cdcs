@@ -46,10 +46,10 @@
     <!-- StreamSaver and associated libraries for downloading large files 
         see https://jimmywarting.github.io/StreamSaver.js/examples/saving-multiple-files.html 
         for example -->
-    <script type="text/javascript" charset="utf8" src="{% static 'libs/web-streams-polyfill/2.1.0/ponyfill.js' %}"></script>
+    <script type="text/javascript" charset="utf8" src="{% static 'libs/web-streams-polyfill/3.0.3/ponyfill.es6.js' %}"></script>
     <script type="text/javascript" charset="utf8" src="{% static 'libs/web-streams-adapter/c688970/web-streams-adapter.min.js' %}"></script>
-    <script type="text/javascript" charset="utf8" src="{% static 'libs/StreamSaver/2.0.3/StreamSaver.js' %}"></script>
-    <script type="text/javascript" charset="utf8" src="{% static 'libs/StreamSaver/2.0.3/zip-stream.js' %}"></script>
+    <script type="text/javascript" charset="utf8" src="{% static 'libs/StreamSaver/2.0.4/StreamSaver.js' %}"></script>
+    <script type="text/javascript" charset="utf8" src="{% static 'libs/StreamSaver/2.0.4/zip-stream.js' %}"></script>
     <script type="text/javascript" charset="utf8" src="{% static 'libs/shepherd.js/a374a73/shepherd.min.js' %}"></script>
 
     {% block body %}{% endblock %}

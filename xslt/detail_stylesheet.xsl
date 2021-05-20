@@ -3234,7 +3234,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                           p = new TransformStream({
                             transform(chunk, ctrl) {
                               bytesDownloaded += chunk.byteLength
-                              console.debug(`Downloaded ${humanFileSize(bytesDownloaded)} of the zip data`);
+                              //console.debug(`Downloaded ${humanFileSize(bytesDownloaded)} of the zip data`);
                               updateProgressBar(bytesDownloaded,
                                 arrSum(zip_total_sizes) +
                                 arrSum(indiv_dl_sizes));
@@ -3283,7 +3283,6 @@ The textual data from the selected rows (not the actual files) can also be expor
                             });
 
                           fileStreamArr.push(ws);
-                          console.info(`writeStream ${ws}`);
 
                           let files = filesIters[i];
                           // ZIP is a ReadableStream

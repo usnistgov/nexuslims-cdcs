@@ -14,7 +14,8 @@
   const test = fn => { try { fn() } catch (e) {} }
   const ponyfill = window.WebStreamsPolyfill || {}
   const isSecureContext = window.isSecureContext
-  let useBlobFallback = /constructor/i.test(window.HTMLElement) || !!window.safari
+  // TODO: Must come up with a real detection test (#69)
+  let useBlobFallback = /constructor/i.test(window.HTMLElement) || !!window.safari || !!window.WebKitPoint
   const downloadStrategy = isSecureContext || 'MozAppearance' in document.documentElement.style
     ? 'iframe'
     : 'navigate'
@@ -23,8 +24,8 @@
     createWriteStream,
     WritableStream: window.WritableStream || ponyfill.WritableStream,
     supported: true,
-    version: { full: '2.0.0', major: 2, minor: 0, dot: 0 },
-    mitm: '/static/libs/StreamSaver/2.0.3/mitm.html'
+    version: { full: '2.0.0', major: 2, minor: 0, dot: 4 },
+    mitm: '/static/libs/StreamSaver/2.0.4/mitm.html'
   }
 
   /**
@@ -132,6 +133,11 @@
       readableStrategy: undefined
     }
 
+    let bytesWritten = 0 // by StreamSaver.js (not the service worker)
+    let downloadUrl = null
+    let channel = null
+    let ts = null
+
     // normalize arguments
     if (Number.isFinite(options)) {
       [ size, options ] = [ options, size ]
@@ -148,10 +154,8 @@
     if (!useBlobFallback) {
       loadTransporter()
 
-      var bytesWritten = 0 // by StreamSaver.js (not the service worker)
-      var downloadUrl = null
-      var channel = new MessageChannel()
-
+      channel = new MessageChannel()
+      
       // Make filename RFC5987 compatible
       filename = encodeURIComponent(filename.replace(/\//g, ':'))
         .replace(/['()]/g, escape)
@@ -190,7 +194,7 @@
             }
           }
         }
-        var ts = new streamSaver.TransformStream(
+        ts = new streamSaver.TransformStream(
           transformer,
           opts.writableStrategy,
           opts.readableStrategy
@@ -238,8 +242,7 @@
 
     let chunks = []
 
-    //(!useBlobFallback && ts && ts.writable) ||
-    return  new streamSaver.WritableStream({
+    return (!useBlobFallback && ts && ts.writable) || new streamSaver.WritableStream({
       write (chunk) {
         if (useBlobFallback) {
           // Safari... The new IE6
@@ -263,7 +266,6 @@
         // EDIT: Transfarable streams solvs this...
         channel.port1.postMessage(chunk)
         bytesWritten += chunk.length
-//        console.log('[StreamSaver.js] written', bytesWritten)
 
         if (downloadUrl) {
           location.href = downloadUrl
