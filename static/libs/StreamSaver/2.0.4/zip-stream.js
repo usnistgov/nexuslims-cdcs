@@ -54,7 +54,7 @@ const pump = zipObj => zipObj.reader.read().then(chunk => {
 // use ponyfill for ReadableStream if pipeTo is not supported (Firefox):
 const ponyfill = window.WebStreamsPolyfill || {}
 const ReadableStream = window.ReadableStream.prototype.pipeTo ?
-                       window.ReadableStream :ponyfill.ReadableStream;
+                       window.ReadableStream : ponyfill.ReadableStream;
 
 
 /**
