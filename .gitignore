@@ -243,3 +243,5 @@ celerybeat-schedule
 static.prod/
 certs/
 django-mongoengine/
+# env variables
+.env

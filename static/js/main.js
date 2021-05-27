@@ -29,12 +29,13 @@
 			$body = $('body');
 
 		// Disable animations/transitions until the page has loaded.
-        $body.addClass('is-loading');
-
-        $window.on('load', function() {
-            $body.removeClass('is-loading');
+        setTimeout(function(){
+            $(document).ready( function() {
+                $body.removeClass('is-loading');
+            });
         });
 
+        $body.addClass('is-loading');
 		// Fix: Placeholder polyfill.
         $('form').placeholder();
 
@@ -53,7 +54,7 @@
         // Title Bar.
         $(
             '<div id="titleBar">' +
-                '<a href="#navPanel" class="toggle"></a>' +
+                '<a href="#navPanel" class="toggle"><i class="fas fa-bars ml-2"></i></a>' +
                 '<span class="title">' + $('#cdcs-menu-title a').html() + '</span>' +
             '</div>'
         ).prependTo('#page-wrapper');
