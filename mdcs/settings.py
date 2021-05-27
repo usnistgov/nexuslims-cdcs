@@ -103,9 +103,6 @@ INSTALLED_APPS = (
     "defender",
     "captcha",
 
-    # Override for results.js
-    "results_override",
-
     # Core apps
     "core_main_app",
     
