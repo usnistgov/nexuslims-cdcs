@@ -1,23 +1,35 @@
-from django.conf import settings
-from django.core.urlresolvers import reverse
-from django.shortcuts import render
+import logging
 
-from core_main_app.components.template_version_manager.api import get_global_version_managers
+from django.conf import settings
+from django.shortcuts import render
+from django.urls import reverse
+
+from core_main_app.access_control.exceptions import AccessControlError
+from core_main_app.components.template_version_manager.api import (
+    get_global_version_managers,
+)
+
+logger = logging.getLogger(__name__)
 
 
 def template_list(request):
-    """ Display the last HOMEPAGE_NB_LAST_TEMPLATES templates.
+    """Display the last HOMEPAGE_NB_LAST_TEMPLATES templates.
     Args:
         request:
 
     Returns:
 
     """
-    context = {
-        "templates": [version_manager for version_manager in get_global_version_managers()
-                      if not version_manager.is_disabled][:settings.HOMEPAGE_NB_LAST_TEMPLATES]
-    }
-
+    try:
+        templates = [
+            version_manager
+            for version_manager in get_global_version_managers(request=request)
+            if not version_manager.is_disabled
+        ][: settings.HOMEPAGE_NB_LAST_TEMPLATES]
+    except AccessControlError:
+        templates = []
+        logger.warning("Access Forbidden: unable to get template list.")
+    context = {"templates": templates}
     return render(request, "mdcs_home/template_list.html", context)
 
 
@@ -28,18 +40,17 @@ def tiles(request):
     :return:
     """
     from django.conf import settings
+
     installed_apps = settings.INSTALLED_APPS
 
-    context = {
-        "tiles": []
-    }
+    context = {"tiles": []}
 
     if "core_explore_example_app" in installed_apps:
         explore_example_tile = {
             "logo": "fa-flask",
-            "link":  reverse("core_explore_example_index"),
+            "link": reverse("core_explore_example_index"),
             "title": "Build your own queries",
-            "text": "Click here to search for Materials Data in the repository using flexible queries."
+            "text": "Click here to search for Materials Data in the repository using flexible queries.",
         }
 
         # context["tiles"].append(explore_example_tile)
@@ -68,10 +79,10 @@ def tiles(request):
 
     if "core_composer_app" in installed_apps:
         compose_tile = {
-            "logo": "fa-file-code-o",
+            "logo": "fa-file-code",
             "link": reverse("core_composer_index"),
             "title": "Compose a template",
-            "text": "Click here to compose your own template."
+            "text": "Click here to compose your own template.",
         }
 
         # context["tiles"].append(compose_tile)
