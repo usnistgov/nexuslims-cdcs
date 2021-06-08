@@ -31,7 +31,10 @@ ALLOWED_HOSTS = (
     os.environ["ALLOWED_HOSTS"].split(",") if "ALLOWED_HOSTS" in os.environ else []
 )
 
+# Nexus settings
 DOCUMENTATION_LINK = "http://nexuslims.ipages.nist.gov/NexusMicroscopyLIMS/doc"
+CAN_ANONYMOUS_ACCESS_PUBLIC_DATA = True
+VERIFY_DATA_ACCESS = False
 
 # Databases
 
@@ -455,3 +458,6 @@ if SERVER_URI.lower().startswith("https"):
 
     # Set x-frame options
     X_FRAME_OPTIONS = "SAMEORIGIN"
+
+    # Don't verify SSL certificates internally
+    SSL_CERTIFICATES_DIR = False
