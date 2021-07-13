@@ -245,3 +245,7 @@ certs/
 django-mongoengine/
 # env variables
 .env
+
+# Celery files
+celerybeat-schedule.*
+
