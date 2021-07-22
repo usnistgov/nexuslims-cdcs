@@ -30,6 +30,8 @@ $('li > a:contains("Browse and Search")')
     .attr("id", "menu-browse")
 $('li > a:contains("Sharepoint Calendar")')
     .attr("id", "menu-calendar")
+$('li > a:contains("NEMO")')
+    .attr("id", "menu-nemo")
 $('li > a:contains("Tutorial")')
     .attr("id", "menu-tutorial")
 $('li > a:contains("Help")')
@@ -126,6 +128,29 @@ function create_tour() {
         text: 'Click here to be brought to the Nexus Facility SharePoint reservation calendar system',
         attachTo: {
             element: '#menu-calendar',
+            on: 'bottom'
+        },
+        buttons: [{
+                text: '<i class="fa fa-arrow-left menu-fa"></i> Back',
+                classes: 'btn btn-default',
+                action: menu_tour.back,
+                label: 'Back'
+            },
+            {
+                text: 'Next <i class="fa fa-arrow-right menu-fa"></i>',
+                classes: 'btn btn-primary',
+                action: menu_tour.next,
+                label: 'Next'
+            }
+        ],
+    });
+
+    menu_tour.addStep({
+        id: 'tut-nemo',
+        title: 'Go to NEMO reservation system',
+        text: 'Click here to be brought to the NEMO reservation system for CNST instruments',
+        attachTo: {
+            element: '#menu-nemo',
             on: 'bottom'
         },
         buttons: [{
