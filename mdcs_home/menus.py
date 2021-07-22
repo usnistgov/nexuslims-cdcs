@@ -61,6 +61,14 @@ Menu.add_item(
              iconClass="far")
 )
 
+Menu.add_item(
+    "nodropdown",
+    MenuItem("NEMO (CNST Instruments)", 
+             "https://nemo.nist.gov",
+             icon="fish",
+             iconClass="fas")
+)
+
 # Menu.add_item(
 #     "explorer", MenuItem("Build a Custom Query", reverse("core_explore_example_index"))
 # )
