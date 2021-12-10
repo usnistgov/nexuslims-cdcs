@@ -7,9 +7,9 @@
     
     <xsl:param name="xmlName" select="''"/>
 
-    <xsl:variable name="datasetBaseUrl">https://path_to_webserver_for_datasets/</xsl:variable>
-    <xsl:variable name="previewBaseUrl">https://path_to_webserver_for_previews/</xsl:variable>
-    <xsl:variable name="sharepointBaseUrl">https://path_to_calendar_reservation_system/</xsl:variable>
+    <xsl:variable name="datasetBaseUrl">https://limsimages.campus.nist.gov/mmfnexus/</xsl:variable>
+    <xsl:variable name="previewBaseUrl">https://limsimages.campus.nist.gov/nexusLIMS/mmfnexus/</xsl:variable>
+    <xsl:variable name="sharepointBaseUrl">https://mmlshare.nist.gov/Div/msed/MSED-MMF/Lists/</xsl:variable>
 
     <xsl:variable name="month-num-dictionary">
         <month month-number="01">January</month>
@@ -613,13 +613,13 @@
                     min-width: 25vw;
                 }
                 
-                table#summary-table > tbody > tr > * {
+                table.upper-table > tbody > tr > * {
                     border: 0;
                     padding: .1rem;
                     line-height: 1.5;
                     font-size: 0.75em;
                 }
-                table#summary-table th {
+                table.upper-table th {
                     font-weight: bold;
                 }
                 
@@ -634,23 +634,37 @@
                 
                 table.meta-table, 
                 table.aa-table,
-                table.filelist-table {
+                table.filelist-table,
+                table.sample-table {
                     border-collapse: collapse;
                 
                 }
                 
                 table.meta-table td, table.meta-table th, 
                 table.aa-table td, table.aa-table th,
-                table.filelist-table td, table.filelist-table th{
+                table.filelist-table td, table.filelist-table th,
+                table.sample-table td, table.sample-table th {
                     padding: 0.3em;
                 }
                 
                 table.meta-table th, 
                 table.aa-table th,
-                table.filelist-table th{
+                table.filelist-table th,
+                table.sample-table th {
                     background-color: #3a65a2;
                     border-color: black;
                     color: white;
+                }
+                
+                table.sample-table td {
+                    text-align: center;
+                    line-height: 1.2em;
+                    vertical-align: middle;
+                }
+                
+                table.sample-table p {
+                   margin-bottom: 0.25em;
+                   margin-top: 0.25em;
                 }
                 
                 table.filelist-table.dataTable tbody td.select-checkbox:before {
@@ -923,9 +937,11 @@
                 }
             </style>
 
+<!--
             <div id="loading">
                 <img src="static/img/logo_bare.png"/>
             </div>
+-->
 
             <!-- ============= Main Generation of the Page ============= -->
             <!-- Add sidebar to the page -->
@@ -1017,7 +1033,7 @@
                             <xsl:text> </xsl:text>
                             <sup class="sup-link"
                                 data-toggle='tooltip' data-placement='right'
-                                title='Click to view associated record on the Sharepoint calendar'>
+                                title='Click to view associated record on the calendar'>
                                 <xsl:element name="a">
                                     <xsl:attribute name="target">_blank</xsl:attribute>
                                     <xsl:attribute name="href">
@@ -1067,7 +1083,7 @@
                                                     </xsl:call-template></xsl:attribute>
                                                 <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
                                                 <xsl:attribute name="data-placement">bottom</xsl:attribute> 
-                                                <xsl:attribute name="title">Click to view this instrument on the Sharepoint calendar</xsl:attribute>
+                                                <xsl:attribute name="title">Click to view this instrument on the reservation calendar</xsl:attribute>
                                                 <xsl:value-of select="summary/instrument"/>
                                             </xsl:element>
                                         </xsl:when>
@@ -1126,7 +1142,7 @@
                                             No motivation provided
                                             <xsl:call-template name="help-tip">
                                                 <xsl:with-param name="tip-placement">right</xsl:with-param>
-                                                <xsl:with-param name="tip-text">This value is pulled from the "Experiment Purpose" field of a Sharepoint calendar reservation</xsl:with-param>
+                                                <xsl:with-param name="tip-text">This value is pulled from the "Experiment Purpose" field of a calendar reservation</xsl:with-param>
                                             </xsl:call-template>
                                         </xsl:otherwise>
                                     </xsl:choose>
@@ -1137,11 +1153,11 @@
                         
                         <h3 id="res-info-header">Session Summary 
                         <xsl:call-template name="help-tip">
-                            <xsl:with-param name="tip-text">Summary information is extracted from the Sharepoint calendar reservation associated with this record</xsl:with-param>
+                            <xsl:with-param name="tip-text">Summary information is extracted from the calendar reservation associated with this record</xsl:with-param>
                         </xsl:call-template></h3>
                         <!-- Display summary information (date, time, instrument, and id) -->
     
-                        <table class="table" id="summary-table" 
+                        <table class="table upper-table" id="summary-table" 
                                style="border-collapse:collapse;">
                             <xsl:if test="summary/reservationStart/text()">
                                 <tr>
@@ -1190,15 +1206,15 @@
                             </xsl:if>
                             <xsl:if test="id/text()">
                                 <tr>
-                                    <th scope="row">Session ID:<xsl:text> </xsl:text>
+                                    <th scope="row">Reservation ID:<xsl:text> </xsl:text>
                                         <xsl:call-template name="help-tip">
                                             <xsl:with-param name="tip-placement">right</xsl:with-param>
-                                            <xsl:with-param name="tip-text">ID from this instrument's Sharepoint calendar listing</xsl:with-param>
+                                            <xsl:with-param name="tip-text">ID from this instrument's calendar reservation</xsl:with-param>
                                         </xsl:call-template></th>
                                     <td><xsl:value-of select="id"/></td>
                                 </tr>
                             </xsl:if>
-                            <xsl:if test="sample/name/text()">
+                         <!--   <xsl:if test="acquisitionActivity[@seqno=0]/sampleID/text()">
                                 <tr>
                                     <th scope="row">Sample name: </th>
                                     <td> <xsl:value-of select="sample/name"/></td>
@@ -1224,13 +1240,144 @@
                                     <th scope="row">Description: </th>
                                     <td><xsl:value-of select="$description-stripped"/></td>
                                 </tr>
-                            </xsl:if>
+                            </xsl:if> -->
                         </table>
                         
+                        <xsl:if test="sample/*/text()">
+                            <h3 id="sample-info-header">Sample Information
+                                <xsl:call-template name="help-tip">
+                                    <xsl:with-param name="tip-text">Sample information is extracted from the calendar reservation associated with this record</xsl:with-param>
+                                </xsl:call-template>
+                            </h3>
+                            <table class="table upper-table" id="sample-table" 
+                                style="border-collapse:collapse;">
+                                <xsl:choose>
+                                    <xsl:when test="count(sample) = 1">
+                                        <xsl:if test="sample/name/text()">
+                                            <tr>
+                                                <th scope="row">Name: </th>
+                                                <td> <xsl:value-of select="sample/name"/></td>
+                                            </tr>
+                                        </xsl:if>
+                                        <xsl:if test="sample/@ref/text()">
+                                            <tr>
+                                                <th scope="row">PID: </th>
+                                                <td> 
+                                                    <xsl:call-template name="link-or-text">
+                                                        <xsl:with-param name="val">
+                                                            <xsl:value-of select="sample/@ref"/>
+                                                        </xsl:with-param>
+                                                    </xsl:call-template>
+                                                </td>
+                                            </tr>  
+                                        </xsl:if>
+                                        <xsl:if test="sample/description/text()">
+                                            <tr>
+                                                <th scope="row">Description: </th>
+                                                <td> <xsl:value-of select="sample/description"/></td>
+                                            </tr>
+                                        </xsl:if>
+                                    </xsl:when>
+                                    <xsl:when test="count(sample) > 1">
+                                        <table class="table table-condensed table-hover sample-table compact wrap" border="1" 
+                                               style="width:90%; border-collapse:collapse; text-align: center;">
+                                            <thead>
+                                                <tr>
+                                                    <th style='padding-left: 1.0em; padding-right: 1.0em;'>#</th>
+                                                    <th>
+                                                        Name
+                                                        <xsl:call-template name="help-tip">
+                                                            <xsl:with-param name="tip-text">The name given to this sample (as entered at the time of reservation)</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </th>
+                                                    <th>
+                                                        PID
+                                                        <xsl:call-template name="help-tip">
+                                                            <xsl:with-param name="tip-text">A persistent identifier for this sample (if a URL, you can click to view more sample details)</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </th>
+                                                    <th>
+                                                        Description
+                                                        <xsl:call-template name="help-tip">
+                                                            <xsl:with-param name="tip-text">The description given to this sample (as entered at the time of reservation)</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                        <xsl:for-each select="sample">
+                                            <xsl:variable name="i" select="position()" />
+                                            
+                                            <tr>
+                                                <td style='padding-left: 1.0em; padding-right: 1.0em;'><xsl:value-of select="$i"/></td>
+                                                <xsl:choose>
+                                                    <xsl:when test="./name/text()">
+                                                        <td><xsl:value-of select="./name"/></td>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <td>
+                                                            <xsl:element name="span">
+                                                            <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
+                                                            <xsl:attribute name="data-placement">right</xsl:attribute>
+                                                            <xsl:attribute name="title">No value entered</xsl:attribute>
+                                                                —
+                                                            </xsl:element>
+                                                        </td>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                                <xsl:choose>
+                                                    <xsl:when test="normalize-space(./@ref) != ''">
+                                                        <td>
+                                                            <xsl:call-template name="link-or-text">
+                                                                <xsl:with-param name="val">
+                                                                    <xsl:value-of select="./@ref"/>
+                                                                </xsl:with-param>
+                                                            </xsl:call-template>
+                                                        </td>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <td>
+                                                            <xsl:element name="span">
+                                                                <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
+                                                                <xsl:attribute name="data-placement">right</xsl:attribute>
+                                                                <xsl:attribute name="title">No value entered</xsl:attribute>
+                                                                —
+                                                            </xsl:element>
+                                                        </td>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                                <xsl:choose>
+                                                    <xsl:when test="./description/text()">
+                                                        <td> 
+                                                            <xsl:for-each select="./description">
+                                                                <p><xsl:value-of select="."/></p>
+                                                            </xsl:for-each>
+                                                        </td>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <td>
+                                                            <xsl:element name="span">
+                                                                <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
+                                                                <xsl:attribute name="data-placement">right</xsl:attribute>
+                                                                <xsl:attribute name="title">No value entered</xsl:attribute>
+                                                                —
+                                                            </xsl:element>
+                                                        </td>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </tr>
+                                        </xsl:for-each>
+                                            </tbody>
+                                        </table>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </table>
+                        </xsl:if>
+                        
                         <xsl:if test="project/*/text()">
-                          <h3 id="res-info-header">Project Information 
+                          <h3 id="proj-info-header">Project Information 
                               <xsl:call-template name="help-tip">
-                                  <xsl:with-param name="tip-text">Project information is extracted from the user's division and group, as well as the Sharepoint calendar reservation associated with this record</xsl:with-param>
+                                  <xsl:with-param name="tip-text">Project information is extracted from the user's division and group, as well as the calendar reservation associated with this record</xsl:with-param>
                               </xsl:call-template>
                               <xsl:if test="project/ref/text()">
                                   <xsl:text> </xsl:text>
@@ -1246,7 +1393,7 @@
                               </xsl:if>
                           </h3>
                           
-                          <table class="table table-condensed" id="summary-table" 
+                            <table class="table table-condensed upper-table" id="proj-table" 
                               style="border-collapse:collapse;width:80%;">
                               <xsl:if test="project/name/text()">
                                   <tr>
@@ -4240,5 +4387,28 @@ The textual data from the selected rows (not the actual files) can also be expor
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
+    <!-- This template will take a value and detect if it is a link (simply
+         if it starts with http). If so, it will return the value as an anchor
+         element, if not, it will just return the value as text -->
+    <xsl:template name="link-or-text">
+        <xsl:param name='val'/>
+        <xsl:choose>
+            <xsl:when test="starts-with($val, 'http')">
+                <xsl:element name="a">
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="$val"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="target">
+                        _blank
+                    </xsl:attribute>
+                    <xsl:value-of select="$val"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$val"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
 </xsl:stylesheet>
