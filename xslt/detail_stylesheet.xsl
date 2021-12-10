@@ -937,11 +937,11 @@
                 }
             </style>
 
-<!--
+
             <div id="loading">
                 <img src="static/img/logo_bare.png"/>
             </div>
--->
+
 
             <!-- ============= Main Generation of the Page ============= -->
             <!-- Add sidebar to the page -->
