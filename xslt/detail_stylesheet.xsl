@@ -1152,9 +1152,19 @@
                         </div>
                         
                         <h3 id="res-info-header">Session Summary 
+                        <xsl:if test="summary/@ref">
+                            - 
+                            <xsl:element name="a">
+                                <xsl:attribute name="href"><xsl:value-of select="summary/@ref"/></xsl:attribute>    
+                                <xsl:attribute name="target">_blank</xsl:attribute>
+                                <i class='fa fa-calendar-alt'/>
+                            </xsl:element>
+                            <xsl:text> </xsl:text>
+                        </xsl:if>
                         <xsl:call-template name="help-tip">
-                            <xsl:with-param name="tip-text">Summary information is extracted from the calendar reservation associated with this record</xsl:with-param>
-                        </xsl:call-template></h3>
+                            <xsl:with-param name="tip-text">Summary information is extracted from the calendar reservation associated with this record; click the calendar icon (if present) to visit the page for this reservation</xsl:with-param>
+                        </xsl:call-template>
+                        </h3>
                         <!-- Display summary information (date, time, instrument, and id) -->
     
                         <table class="table upper-table" id="summary-table" 
@@ -1259,7 +1269,7 @@
                                                 <td> <xsl:value-of select="sample/name"/></td>
                                             </tr>
                                         </xsl:if>
-                                        <xsl:if test="sample/@ref/text()">
+                                        <xsl:if test="sample/@ref">
                                             <tr>
                                                 <th scope="row">PID: </th>
                                                 <td> 
