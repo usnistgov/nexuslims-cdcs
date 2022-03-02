@@ -55,10 +55,10 @@ Menu.add_item(
 
 Menu.add_item(
     "nodropdown",
-    MenuItem("Sharepoint Calendar", 
-             "https://mmlshare.nist.gov/Div/msed/MSED-MMF/default.aspx",
-             icon="calendar-alt",
-             iconClass="far")
+    MenuItem("MARLIN Scheduler", 
+             "https://***REMOVED***",
+             icon="fish",
+             iconClass="fas")
 )
 
 Menu.add_item(

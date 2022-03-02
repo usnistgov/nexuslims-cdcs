@@ -28,7 +28,7 @@ $(document).ready(function() {
 // add id attributes to menus
 $('li > a:contains("Browse and Search")')
     .attr("id", "menu-browse")
-$('li > a:contains("Sharepoint Calendar")')
+$('li > a:contains("MARLIN")')
     .attr("id", "menu-calendar")
 $('li > a:contains("NEMO")')
     .attr("id", "menu-nemo")
@@ -125,7 +125,7 @@ function create_tour() {
     menu_tour.addStep({
         id: 'tut-calendar',
         title: 'Go to reservation system',
-        text: 'Click here to be brought to the Nexus Facility SharePoint reservation calendar system',
+        text: 'Click here to be brought to the MARLIN reservation calendar system for Nexus instruments',
         attachTo: {
             element: '#menu-calendar',
             on: 'bottom'
