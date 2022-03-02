@@ -10,7 +10,7 @@
 
     $.ajax({
         url: getDataSourcesHTMLUrl,
-        type: "GET",
+        type: "POST",
         data: {
             'query_id': query_id
         },
@@ -62,7 +62,7 @@ var getResultsPage = function(event) {
 
     $.ajax({
         url: data_source_url,
-        type: "GET",
+        type: "POST",
         success: function(data) {
             // make sure result_page is hidden
             result_page.hide();
@@ -111,7 +111,7 @@ var getDataPermission = function() {
         var dataPermissionUrl = inputElement.attr("value");
         $.ajax({
             url: dataPermissionUrl,
-            type: "GET",
+            type: "POST",
             contentType:"application/json; charset=utf-8",
             success: function(data) {
                 for(id in data) {
