@@ -111,7 +111,7 @@
 ###	1. Install supporting applications on your host system.
 
 * Python 3.6.8: https://www.anaconda.com/distribution/ (choose python 3.x)
-* MongoDB 4.0.3: https://www.mongodb.com/download-center#community
+* MongoDB 4.4: https://www.mongodb.com/download-center#community
 * Redis 5.0: https://redis.io/download
 * Celery    : NOTE: This is installed below via `pip install`.
 * gettext   : This utility is necessary for supporting internationalization in MDCS 2.0 systems >= MDCS 2.0 beta2.
@@ -392,11 +392,12 @@ python manage.py runserver
 ```
 
 NOTES:
-- Additional packages are required for development. In your dev
-environment, run the following command to install those packages:
-```
-$$ pip install -r requirements.dev.txt
-```
+- For development purposes, additional packages are required and bundled with the 
+  [core_main_app](https://github.com/usnistgov/core_main_app) package. To install these
+  development packages, run:
+	```
+	$$ pip install core_main_app[develop]
+	```
 - the key differences between the main `settings.py` file and the
 `dev_settings.py` file is that the development version overrides the
 databases setting to use sqlite3 instead of postgres, and sets the

@@ -53,6 +53,8 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 MONGO_HOST = os.environ["MONGO_HOST"] if "MONGO_HOST" in os.environ else ""
 MONGO_PORT = os.environ["MONGO_PORT"] if "MONGO_PORT" in os.environ else "27017"
 MONGO_DB = os.environ["MONGO_DB"] if "MONGO_DB" in os.environ else ""
@@ -61,7 +63,7 @@ MONGO_PASS = os.environ["MONGO_PASS"] if "MONGO_PASS" in os.environ else ""
 MONGODB_URI = (
     f"mongodb://{MONGO_USER}:{MONGO_PASS}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DB}"
 )
-connect(MONGO_DB, host=MONGODB_URI)
+connect(host=MONGODB_URI, connect=False)
 
 
 BROKER_TRANSPORT_OPTIONS = {
@@ -79,6 +81,7 @@ else:
     REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = REDIS_URL
+CELERYBEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 # set default sorting option to be most recent records first:
 DATA_SORTING_FIELDS = ["-last_modification_date", "title", "template"]
@@ -105,7 +108,8 @@ INSTALLED_APPS = (
     "tz_detect",
     "defender",
     "captcha",
-
+    "django_celery_beat",
+    
     # Core apps
     "core_main_app",
     
@@ -465,7 +469,10 @@ if SERVER_URI.lower().startswith("https"):
 if ENABLE_SAML2_SSO_AUTH:
     import saml2
     import saml2.saml
-    from core_main_app.utils.saml2.utils import load_saml_config_from_env
+    from core_main_app.utils.saml2.utils import (
+        load_saml_config_from_env,
+        load_django_attribute_map_from_env,
+    )
 
     # Update Django Settings
     if "djangosaml2" not in INSTALLED_APPS:
@@ -493,12 +500,8 @@ if ENABLE_SAML2_SSO_AUTH:
     SAML_CREATE_UNKNOWN_USER = (
         os.getenv("SAML_CREATE_UNKNOWN_USER", "False").lower() == "true"
     )
-    SAML_ATTRIBUTE_MAPPING = {
-        "uid": ("username",),
-        "mail": ("email",),
-        "cn": ("first_name",),
-        "sn": ("last_name",),
-    }
+    SAML_ATTRIBUTE_MAPPING = load_django_attribute_map_from_env()
 
     # Configure Pysaml2
     SAML_CONFIG = load_saml_config_from_env(server_uri=SERVER_URI, base_dir=BASE_DIR)
+    SAML_ACS_FAILURE_RESPONSE_FUNCTION = "core_main_app.views.user.views.saml2_failure"
