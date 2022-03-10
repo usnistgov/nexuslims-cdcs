@@ -115,3 +115,7 @@ AUTO_SET_PID = False
 ENABLE_SAML2_SSO_AUTH = os.getenv("ENABLE_SAML2_SSO_AUTH", "False").lower() == "true"
 """ boolean: enable SAML2 SSO authentication.
 """
+
+ENABLE_HANDLE_PID = os.getenv("ENABLE_HANDLE_PID", "False").lower() == "true"
+""" boolean: enable handle server PID support.
+"""
