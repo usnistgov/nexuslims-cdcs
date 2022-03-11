@@ -527,7 +527,8 @@ if ENABLE_HANDLE_PID:
     ID_PROVIDER_PREFIXES = [os.getenv("HANDLE_NET_PREFIX", "cdcs")]
     ID_PROVIDER_PREFIX_DEFAULT = ID_PROVIDER_PREFIXES[0]
     ID_PROVIDER_PREFIX_BLOB = ID_PROVIDER_PREFIXES[0]
-    PID_XPATH = os.getenv("PID_XPATH", "root.pid")
+    PID_XPATH = os.getenv("PID_XPATH", "Experiment.@pid")
+    AUTO_SET_PID = os.getenv("AUTO_SET_PID", "False").lower() == "true"
 
     HANDLE_NET_RECORD_INDEX = os.getenv("HANDLE_NET_RECORD_INDEX", 1)
     HANDLE_NET_ADMIN_DATA = {
