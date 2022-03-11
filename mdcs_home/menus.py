@@ -63,13 +63,19 @@ Menu.add_item(
 
 Menu.add_item(
     "nodropdown",
+    MenuItem("NEMO", 
+             "https://***REMOVED***",
+             icon="fish",
+             iconClass="fas")
+)
+
+Menu.add_item(
+    "nodropdown",
     MenuItem("EM Community SharePoint", 
              "https://***REMOVED***/",
              icon="users",
              iconClass="fas")
 )
-
-
 
 # Menu.add_item(
 #     "explorer", MenuItem("Build a Custom Query", reverse("core_explore_example_index"))
