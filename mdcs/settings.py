@@ -512,10 +512,10 @@ if ENABLE_HANDLE_PID:
     hdl_user = f'300%3A{os.getenv("HANDLE_NET_PREFIX", "cdcs")}/' + \
                f'{os.getenv("HANDLE_NET_USER", "ADMIN")}'
     ID_PROVIDER_SYSTEMS = {
-        # "local": {
-        #     "class": "core_linked_records_app.utils.providers.local.LocalIdProvider",
-        #     "args": [],
-        # },
+        "local": {
+            "class": "core_linked_records_app.utils.providers.local.LocalIdProvider",
+            "args": [],
+        },
         "handle.net": {  
             "class": "core_linked_records_app.utils.providers.handle_net.HandleNetSystem",
             "args": [
