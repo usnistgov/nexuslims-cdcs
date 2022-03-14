@@ -41,7 +41,6 @@ urlpatterns = [
     re_path(r"^oai_pmh/", include("core_oaipmh_harvester_app.urls")),
     re_path(r"^oai_pmh/server/", include("core_oaipmh_provider_app.urls")),
     re_path(r"^file-preview/", include("core_file_preview_app.urls")),
-    re_path(r"^", include("core_module_local_id_registry_app.urls")),
     re_path(r"^", include("core_module_blob_host_app.urls")),
     re_path(r"^", include("core_module_remote_blob_host_app.urls")),
     re_path(r"^", include("core_module_advanced_blob_host_app.urls")),

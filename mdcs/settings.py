@@ -140,7 +140,6 @@ INSTALLED_APPS = (
     "core_file_preview_app",
     "core_linked_records_app",
     # modules
-    "core_module_local_id_registry_app",
     "core_module_blob_host_app",
     "core_module_remote_blob_host_app",
     "core_module_advanced_blob_host_app",
