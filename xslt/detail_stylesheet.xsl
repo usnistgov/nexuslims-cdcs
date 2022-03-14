@@ -63,23 +63,23 @@
     <xsl:template match="nx:Experiment">
         <xsl:variable name="reservation-date-part">
             <xsl:call-template name="tokenize-select">
-                <xsl:with-param name="text" select="summary/reservationStart"/>
+                <xsl:with-param name="text" select="nx:summary/nx:reservationStart"/>
                 <xsl:with-param name="delim">T</xsl:with-param>
                 <xsl:with-param name="i" select="1"/>
             </xsl:call-template>
         </xsl:variable>
         <xsl:variable name="firstfile-date-part">
             <xsl:call-template name="tokenize-select">
-                <xsl:with-param name="text" select="acquisitionActivity[1]/startTime"/>
+                <xsl:with-param name="text" select="nx:acquisitionActivity[1]/nx:startTime"/>
                 <xsl:with-param name="delim">T</xsl:with-param>
                 <xsl:with-param name="i" select="1"/>
             </xsl:call-template>
         </xsl:variable>
         <xsl:variable name="title">
-            <xsl:value-of select="title"/>
+            <xsl:value-of select="nx:title"/>
         </xsl:variable>
         <xsl:variable name="extension-strings">
-            <xsl:for-each select="//dataset/location">
+            <xsl:for-each select="//nx:dataset/nx:location">
                 <xsl:call-template name="get-file-extension">
                     <xsl:with-param name="path">
                         <xsl:value-of select="."/>
@@ -732,7 +732,7 @@
                     z-index: 500;
                     width: 100vw;
                     height: 100vh;
-                    background: #f7f7f7 url(static/img/bg01.png);
+                    background: #f7f7f7 url(/static/img/bg01.png);
                 }
                 
                 #loading img {
@@ -939,7 +939,7 @@
 
 
             <div id="loading">
-                <img src="static/img/logo_bare.png"/>
+                <img src="/static/img/logo_bare.png"/>
             </div>
 
 
@@ -953,7 +953,7 @@
                         <tr><th>Explore record:</th></tr>
                     </thead>
                     <tbody>
-                    <xsl:for-each select="acquisitionActivity">
+                    <xsl:for-each select="nx:acquisitionActivity">
                         <tr><td>
                         <a class="link" href="#{generate-id(current())}">
                             Activity <xsl:value-of select="@seqno+1"/>
@@ -1038,8 +1038,8 @@
                                     <xsl:attribute name="target">_blank</xsl:attribute>
                                     <xsl:attribute name="href">
                                         <xsl:call-template name="get-calendar-event-link">
-                                            <xsl:with-param name="instrument" select="summary/instrument"></xsl:with-param>
-                                            <xsl:with-param name="event-id" select="id"></xsl:with-param>
+                                            <xsl:with-param name="instrument" select="nx:summary/nx:instrument"></xsl:with-param>
+                                            <xsl:with-param name="event-id" select="nx:id"></xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:attribute><xsl:text> </xsl:text>
                                     <i class='fa fa-calendar'/>
@@ -1067,11 +1067,11 @@
                                 </span>
                                 <br/>
                                 <xsl:variable name="instr-pid">
-                                    <xsl:value-of select="string(summary/instrument/@pid)"/>
+                                    <xsl:value-of select="string(nx:summary/nx:instrument/@pid)"/>
                                 </xsl:variable>
                                 <span id='instr-badge' class="badge list-record-badge">
                                     <xsl:choose>
-                                        <xsl:when test="summary/instrument/text()">
+                                        <xsl:when test="nx:summary/nx:instrument/text()">
                                             <xsl:attribute name="style">background-color:<xsl:for-each select="document('')">
                                                 <xsl:value-of select="key('lookup.instr.color', $instr-pid)"/>
                                             </xsl:for-each> !important;</xsl:attribute>
@@ -1079,12 +1079,12 @@
                                                 <xsl:attribute name="target">_blank</xsl:attribute>
                                                 <xsl:attribute name="href">
                                                     <xsl:call-template name="get-calendar-link">
-                                                        <xsl:with-param name="instrument" select="summary/instrument"></xsl:with-param>
+                                                        <xsl:with-param name="instrument" select="nx:summary/nx:instrument"></xsl:with-param>
                                                     </xsl:call-template></xsl:attribute>
                                                 <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
                                                 <xsl:attribute name="data-placement">bottom</xsl:attribute> 
                                                 <xsl:attribute name="title">Click to view this instrument on the reservation calendar</xsl:attribute>
-                                                <xsl:value-of select="summary/instrument"/>
+                                                <xsl:value-of select="nx:summary/nx:instrument"/>
                                             </xsl:element>
                                         </xsl:when>
                                         <xsl:otherwise>
@@ -1104,8 +1104,8 @@
                                         <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
                                         <xsl:attribute name="data-placement">bottom</xsl:attribute> 
                                         <xsl:attribute name="title">Click to view a file listing of this record</xsl:attribute>
-                                        <xsl:value-of select="count(//dataset)"/> data file<xsl:if test="count(//dataset)>1">s</xsl:if> in <xsl:value-of select="count(//acquisitionActivity)"/> activit<xsl:choose>
-                                            <xsl:when test="count(//acquisitionActivity) = 1">y</xsl:when>
+                                        <xsl:value-of select="count(//nx:dataset)"/> data file<xsl:if test="count(//nx:dataset)>1">s</xsl:if> in <xsl:value-of select="count(//nx:acquisitionActivity)"/> activit<xsl:choose>
+                                            <xsl:when test="count(//nx:acquisitionActivity) = 1">y</xsl:when>
                                             <xsl:otherwise>ies</xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:element>
@@ -1121,8 +1121,8 @@
                                 <div class="experimenter-and-date">
                                     <span class="list-record-experimenter">
                                         <xsl:choose>
-                                            <xsl:when test="summary/experimenter">
-                                                <xsl:value-of select="summary/experimenter"/>
+                                            <xsl:when test="nx:summary/nx:experimenter">
+                                                <xsl:value-of select="nx:summary/nx:experimenter"/>
                                             </xsl:when>
                                             <xsl:otherwise>Unknown experimenter</xsl:otherwise>
                                         </xsl:choose>
@@ -1135,8 +1135,8 @@
                                 <div class="motivation-text">
                                     
                                     <xsl:choose>
-                                        <xsl:when test="summary/motivation/text()">
-                                            <span style="font-style:italic;">Motivation: </span><xsl:value-of select="summary/motivation"/>
+                                        <xsl:when test="nx:summary/nx:motivation/text()">
+                                            <span style="font-style:italic;">Motivation: </span><xsl:value-of select="nx:summary/nx:motivation"/>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             No motivation provided
@@ -1152,10 +1152,10 @@
                         </div>
                         
                         <h3 id="res-info-header">Session Summary 
-                        <xsl:if test="summary/@ref">
+                        <xsl:if test="nx:summary/@ref">
                             - 
                             <xsl:element name="a">
-                                <xsl:attribute name="href"><xsl:value-of select="summary/@ref"/></xsl:attribute>    
+                                <xsl:attribute name="href"><xsl:value-of select="nx:summary/@ref"/></xsl:attribute>    
                                 <xsl:attribute name="target">_blank</xsl:attribute>
                                 <i class='fa fa-calendar-alt'/>
                             </xsl:element>
@@ -1169,12 +1169,12 @@
     
                         <table class="table upper-table" id="summary-table" 
                                style="border-collapse:collapse;">
-                            <xsl:if test="summary/reservationStart/text()">
+                            <xsl:if test="nx:summary/nx:reservationStart/text()">
                                 <tr>
                                     <th scope="row">Date: </th>
                                     <td>
                                         <xsl:call-template name="tokenize-select">
-                                            <xsl:with-param name="text" select="summary/reservationStart"/>
+                                            <xsl:with-param name="text" select="nx:summary/nx:reservationStart"/>
                                             <xsl:with-param name="delim">T</xsl:with-param>
                                             <xsl:with-param name="i" select="1"/>
                                         </xsl:call-template>
@@ -1184,44 +1184,44 @@
                                     <th scope="row">Start Time: </th>
                                     <td>
                                         <xsl:call-template name="tokenize-select">
-                                            <xsl:with-param name="text" select="summary/reservationStart"/>
+                                            <xsl:with-param name="text" select="nx:summary/nx:reservationStart"/>
                                             <xsl:with-param name="delim">T</xsl:with-param>
                                             <xsl:with-param name="i" select="2"/>
                                         </xsl:call-template>
                                     </td>
                                 </tr>
                             </xsl:if>
-                            <xsl:if test="summary/reservationEnd/text()">
+                            <xsl:if test="nx:summary/nx:reservationEnd/text()">
                                 <tr>
                                     <th scope="row">End Time: </th>
                                     <td align="justify">
                                         <xsl:call-template name="tokenize-select">
-                                            <xsl:with-param name="text" select="summary/reservationEnd"/>
+                                            <xsl:with-param name="text" select="nx:summary/nx:reservationEnd"/>
                                             <xsl:with-param name="delim">T</xsl:with-param>
                                             <xsl:with-param name="i" select="2"/>
                                         </xsl:call-template>
                                     </td>
                                 </tr>
                             </xsl:if>
-                            <xsl:if test="summary/collaborator">
+                            <xsl:if test="nx:summary/nx:collaborator">
                                 <tr>
-                                    <th scope="row">Collaborator<xsl:if test="count(summary/collaborator) > 1">s</xsl:if>: </th>
+                                    <th scope="row">Collaborator<xsl:if test="count(nx:summary/nx:collaborator) > 1">s</xsl:if>: </th>
                                     <td>
-                                        <xsl:for-each select="summary/collaborator">
+                                        <xsl:for-each select="nx:summary/nx:collaborator">
                                             <xsl:if test="position() > 1"><br/></xsl:if>
                                             <xsl:value-of select="."/>
                                         </xsl:for-each>
                                     </td>
                                 </tr>
                             </xsl:if>
-                            <xsl:if test="id/text()">
+                            <xsl:if test="nx:id/text()">
                                 <tr>
                                     <th scope="row">Reservation ID:<xsl:text> </xsl:text>
                                         <xsl:call-template name="help-tip">
                                             <xsl:with-param name="tip-placement">right</xsl:with-param>
                                             <xsl:with-param name="tip-text">ID from this instrument's calendar reservation</xsl:with-param>
                                         </xsl:call-template></th>
-                                    <td><xsl:value-of select="id"/></td>
+                                    <td><xsl:value-of select="nx:id"/></td>
                                 </tr>
                             </xsl:if>
                          <!--   <xsl:if test="acquisitionActivity[@seqno=0]/sampleID/text()">
@@ -1253,7 +1253,7 @@
                             </xsl:if> -->
                         </table>
                         
-                        <xsl:if test="sample/*/text()">
+                        <xsl:if test="nx:sample/*/text()">
                             <h3 id="sample-info-header">Sample Information
                                 <xsl:call-template name="help-tip">
                                     <xsl:with-param name="tip-text">Sample information is extracted from the calendar reservation associated with this record</xsl:with-param>
@@ -1262,33 +1262,33 @@
                             <table class="table upper-table" id="sample-table" 
                                 style="border-collapse:collapse;">
                                 <xsl:choose>
-                                    <xsl:when test="count(sample) = 1">
-                                        <xsl:if test="sample/name/text()">
+                                    <xsl:when test="count(nx:sample) = 1">
+                                        <xsl:if test="nx:sample/nx:name/text()">
                                             <tr>
                                                 <th scope="row">Name: </th>
-                                                <td> <xsl:value-of select="sample/name"/></td>
+                                                <td> <xsl:value-of select="nx:sample/nx:name"/></td>
                                             </tr>
                                         </xsl:if>
-                                        <xsl:if test="sample/@ref">
+                                        <xsl:if test="nx:sample/@ref">
                                             <tr>
                                                 <th scope="row">PID: </th>
                                                 <td> 
                                                     <xsl:call-template name="link-or-text">
                                                         <xsl:with-param name="val">
-                                                            <xsl:value-of select="sample/@ref"/>
+                                                            <xsl:value-of select="nx:sample/@ref"/>
                                                         </xsl:with-param>
                                                     </xsl:call-template>
                                                 </td>
                                             </tr>  
                                         </xsl:if>
-                                        <xsl:if test="sample/description/text()">
+                                        <xsl:if test="nx:sample/nx:description/text()">
                                             <tr>
                                                 <th scope="row">Description: </th>
-                                                <td> <xsl:value-of select="sample/description"/></td>
+                                                <td> <xsl:value-of select="nx:sample/nx:description"/></td>
                                             </tr>
                                         </xsl:if>
                                     </xsl:when>
-                                    <xsl:when test="count(sample) > 1">
+                                    <xsl:when test="count(nx:sample) > 1">
                                         <table class="table table-condensed table-hover sample-table compact wrap" border="1" 
                                                style="width:90%; border-collapse:collapse; text-align: center;">
                                             <thead>
@@ -1315,13 +1315,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                        <xsl:for-each select="sample">
+                                        <xsl:for-each select="nx:sample">
                                             <xsl:variable name="i" select="position()" />
                                             
                                             <tr>
                                                 <td style='padding-left: 1.0em; padding-right: 1.0em;'><xsl:value-of select="$i"/></td>
                                                 <xsl:choose>
-                                                    <xsl:when test="./name/text()">
+                                                    <xsl:when test="./nx:name/text()">
                                                         <td><xsl:value-of select="./name"/></td>
                                                     </xsl:when>
                                                     <xsl:otherwise>
@@ -1357,9 +1357,9 @@
                                                     </xsl:otherwise>
                                                 </xsl:choose>
                                                 <xsl:choose>
-                                                    <xsl:when test="./description/text()">
+                                                    <xsl:when test="./nx:description/text()">
                                                         <td> 
-                                                            <xsl:for-each select="./description">
+                                                            <xsl:for-each select="./nx:description">
                                                                 <p><xsl:value-of select="."/></p>
                                                             </xsl:for-each>
                                                         </td>
@@ -1384,16 +1384,16 @@
                             </table>
                         </xsl:if>
                         
-                        <xsl:if test="project/*/text()">
+                        <xsl:if test="nx:project/*/text()">
                           <h3 id="proj-info-header">Project Information 
                               <xsl:call-template name="help-tip">
                                   <xsl:with-param name="tip-text">Project information is extracted from the user's division and group, as well as the calendar reservation associated with this record</xsl:with-param>
                               </xsl:call-template>
-                              <xsl:if test="project/ref/text()">
+                              <xsl:if test="nx:project/nx:ref/text()">
                                   <xsl:text> </xsl:text>
                                   <sup>
                                       <xsl:element name="a">
-                                          <xsl:attribute name="href"><xsl:value-of select="project/ref"/></xsl:attribute>    
+                                          <xsl:attribute name="href"><xsl:value-of select="nx:project/nx:ref"/></xsl:attribute>    
                                           <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
                                           <xsl:attribute name="data-placement">top</xsl:attribute>
                                           <xsl:attribute name="title">Link to this project's reference</xsl:attribute>
@@ -1405,35 +1405,35 @@
                           
                             <table class="table table-condensed upper-table" id="proj-table" 
                               style="border-collapse:collapse;width:80%;">
-                              <xsl:if test="project/name/text()">
+                            <xsl:if test="nx:project/nx:name/text()">
                                   <tr>
                                       <th align="left" class="col-sm-4 parameter-name">Name: </th>
                                       <td align="left" class="col-sm-8">
-                                          <xsl:value-of select="project/name/text()"/>
+                                          <xsl:value-of select="nx:project/nx:name/text()"/>
                                       </td>
                                   </tr>
                               </xsl:if>
-                              <xsl:if test="project/project_id/text()">
+                            <xsl:if test="nx:project/nx:project_id/text()">
                                   <tr>
                                       <th align="left" class="col-sm-4 parameter-name">ID: </th>
                                       <td align="left" class="col-sm-8">
-                                          <xsl:value-of select="project/project_id/text()"/>
+                                          <xsl:value-of select="nx:project/nx:project_id/text()"/>
                                       </td>
                                   </tr>
                               </xsl:if>
-                              <xsl:if test="project/division/text()">
+                            <xsl:if test="nx:project/nx:division/text()">
                                   <tr>
                                       <th align="left" class="col-sm-4 parameter-name">Division: </th>
                                       <td align="left" class="col-sm-8">
-                                          <xsl:value-of select="project/division/text()"/>
+                                          <xsl:value-of select="nx:project/nx:division/text()"/>
                                       </td>
                                   </tr>
                               </xsl:if>
-                              <xsl:if test="project/group/text()">
+                            <xsl:if test="nx:project/nx:group/text()">
                                   <tr>
                                       <th align="left" class="col-sm-4 parameter-name">Group: </th>
                                       <td align="left" class="col-sm-8">
-                                          <xsl:value-of select="project/group/text()"/>
+                                          <xsl:value-of select="nx:project/nx:group/text()"/>
                                       </td>
                                   </tr>
                               </xsl:if>
@@ -1444,10 +1444,10 @@
                     <!-- Image gallery showing images from every dataset of the session -->
                     <div class="col-md-6 slideshow-col">
                         <div id="img_gallery">
-                            <xsl:for-each select="//dataset">
-                                <xsl:variable name="aa_num" select="count(../preceding-sibling::acquisitionActivity) + 1"/>
+                            <xsl:for-each select="//nx:dataset">
+                                <xsl:variable name="aa_num" select="count(../preceding-sibling::nx:acquisitionActivity) + 1"/>
                                 <figure class="slide">
-                                    <img class="nx-img"><xsl:attribute name="src"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="preview"/></xsl:attribute></img>
+                                    <img class="nx-img"><xsl:attribute name="src"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="nx:preview"/></xsl:attribute></img>
                                     <figcaption class="nx-caption">
                                         <div class="row" style="justify-content: space-evenly; align-items: center; flex-wrap: nowrap;">
                                             <div class="" style="">
@@ -1461,9 +1461,9 @@
                                                </a>
                                             </div>
                                             <div class="">
-                                            <span>Dataset <xsl:value-of select="position()"/> of <xsl:value-of select="count(//dataset)" /></span>
+                                                <span>Dataset <xsl:value-of select="position()"/> of <xsl:value-of select="count(//nx:dataset)" /></span>
                                             <br/>
-                                            <span style="margin-left:0.9em;">Activity <xsl:value-of select="$aa_num"/> of <xsl:value-of select="count(//acquisitionActivity)"/></span>
+                                            <span style="margin-left:0.9em;">Activity <xsl:value-of select="$aa_num"/> of <xsl:value-of select="count(//nx:acquisitionActivity)"/></span>
                                             <xsl:text> </xsl:text>
                                             <sup>
                                                 <a  href="#{generate-id(..)}" 
@@ -1489,7 +1489,7 @@
                 <hr/>
                 
                 <!-- Loop through each acquisition activity -->
-                <xsl:for-each select="acquisitionActivity">
+                <xsl:for-each select="nx:acquisitionActivity">
                     <div class="row aa_header_row">
                         <div class="col-md-12">
                             <div class="row">
@@ -1512,10 +1512,10 @@
                                         </i>
                                     </div>
                                     <span class="badge list-record-badge">
-                                        <xsl:value-of select="count(dataset)"/> data file<xsl:if test="count(dataset) > 1">s</xsl:if>
+                                        <xsl:value-of select="count(nx:dataset)"/> data file<xsl:if test="count(nx:dataset) > 1">s</xsl:if>
                                     </span>
                                     <xsl:variable name="this-aa-extension-strings">
-                                        <xsl:for-each select="./dataset/location">
+                                        <xsl:for-each select="./nx:dataset/nx:location">
                                             <xsl:call-template name="get-file-extension">
                                                 <xsl:with-param name="path">
                                                     <xsl:value-of select="."/>
@@ -1541,11 +1541,11 @@
                                 <!-- preview image column -->
                                 <div class="col-lg-4 aa-img-col">
                                     <!-- likely better to load and hide each image first rather than change img src dynamically -->
-                                    <xsl:for-each select="dataset[1]">
-                                        <img class="nx-img aa-img visible" id="{generate-id()}-aa-img"><xsl:attribute name="src"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="preview"/></xsl:attribute></img>        
+                                    <xsl:for-each select="nx:dataset[1]">
+                                        <img class="nx-img aa-img visible" id="{generate-id()}-aa-img"><xsl:attribute name="src"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="nx:preview"/></xsl:attribute></img>        
                                     </xsl:for-each>
-                                    <xsl:for-each select="dataset[position() > 1]">
-                                        <img class="nx-img aa-img hidden" id="{generate-id()}-aa-img"><xsl:attribute name="src"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="preview"/></xsl:attribute></img>
+                                    <xsl:for-each select="nx:dataset[position() > 1]">
+                                        <img class="nx-img aa-img hidden" id="{generate-id()}-aa-img"><xsl:attribute name="src"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="nx:preview"/></xsl:attribute></img>
                                     </xsl:for-each>                                    
                                 </div>
                                 
@@ -1579,7 +1579,7 @@
                                                     </xsl:call-template>
                                                 </th>
                                                 <xsl:choose>
-                                                    <xsl:when test="dataset/format/text()">
+                                                    <xsl:when test="nx:dataset/nx:format/text()">
                                                         <th>
                                                             Format
                                                             <xsl:call-template name="help-tip">
@@ -1595,23 +1595,23 @@
                                         </thead>
                                         <!-- Loop through each dataset -->
                                         <tbody>
-                                            <xsl:for-each select="dataset">
+                                            <xsl:for-each select="nx:dataset">
                                                 <tr img-id="{generate-id()}-aa-img">
                                                     <!-- Populate table values with the metadata name and value -->
                                                     <!-- generate a dataset id that matches preview image as an attribute on the first column for accessing later via JS -->
                                                     <xsl:element name="td">
-                                                        <xsl:value-of select="name"/>
+                                                        <xsl:value-of select="nx:name"/>
                                                     </xsl:element>
                                                     <xsl:element name="td">
                                                         <xsl:choose>
-                                                            <xsl:when test="meta[@name = 'Creation Time']">
-                                                                <xsl:variable name="dt" select="string(meta[@name = 'Creation Time'])"/>
+                                                            <xsl:when test="nx:meta[@name = 'Creation Time']">
+                                                                <xsl:variable name="dt" select="string(nx:meta[@name = 'Creation Time'])"/>
                                                                 <xsl:value-of select="concat(
                                                                     substring($dt,1,10),' ',
                                                                     substring($dt,12,5))" />
                                                             </xsl:when>
-                                                            <xsl:when test="../setup/param[@name = 'Creation Time']">
-                                                                <xsl:variable name="dt" select="string(../setup/param[@name = 'Creation Time'])"/>
+                                                            <xsl:when test="../nx:setup/nx:param[@name = 'Creation Time']">
+                                                                <xsl:variable name="dt" select="string(../nx:setup/nx:param[@name = 'Creation Time'])"/>
                                                                 <xsl:value-of select="concat(
                                                                     substring($dt,1,10),' ',
                                                                     substring($dt,12,5))" />
@@ -1628,8 +1628,8 @@
                                                     <td><xsl:value-of select="$dataset-type"/></td>
                                                     <td><xsl:value-of select="@role"/></td>
                                                     <xsl:choose>
-                                                        <xsl:when test="../dataset/format/text()">
-                                                            <td><xsl:value-of select="format/text()"/></td>
+                                                        <xsl:when test="../nx:dataset/nx:format/text()">
+                                                            <td><xsl:value-of select="nx:format/text()"/></td>
                                                         </xsl:when>
                                                     </xsl:choose>
                                                     <td class='text-center aa-meta-col'>
@@ -1639,7 +1639,7 @@
                                                         title="Click to view this dataset's unique metadata">
                                                             <i class='fa fa-tasks fa-border param-button' style='margin-left:0;'/>
                                                         </a>
-                                                        <xsl:variable name="json-tmp"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="preview"/></xsl:variable>
+                                                        <xsl:variable name="json-tmp"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="nx:preview"/></xsl:variable>
                                                         <xsl:variable name="json-location"><xsl:value-of select="substring-before($json-tmp, '.thumb.png')"/>.json</xsl:variable>
                                                         <xsl:element name='a'>
                                                             <xsl:attribute name="href"><xsl:value-of select="$json-location"/></xsl:attribute>
@@ -1660,9 +1660,9 @@
                                                                          style="justify-content: center;">
                                                                         <div class="col-11" style="max-width: 500px; white-space: pre-wrap; text-align: left; line-height: 1.5em;"><span style="font-weight: bold;"><xsl:value-of select="name"/></span>
                                                                             <xsl:choose>
-                                                                                <xsl:when test="description/text()">
+                                                                                <xsl:when test="nx:description/text()">
                                                                                     <br/>
-                                                                                    <div style="font-size:15px">Dataset description: <em><xsl:value-of select="description"/></em></div>
+                                                                                    <div style="font-size:15px">Dataset description: <em><xsl:value-of select="nx:description"/></em></div>
                                                                                 </xsl:when>
                                                                             </xsl:choose></div>
                                                                         
@@ -1686,7 +1686,7 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    <xsl:for-each select="meta">
+                                                                                    <xsl:for-each select="nx:meta">
 <!--                                                                                        <xsl:sort select="@name"/>
                                                                                             Don't sort here because xsl is case-sensitive, which isn't what we want
 -->
@@ -1752,7 +1752,7 @@
                                                     </td>
                                                     <td class='text-center aa-dl-col'>
                                                         <xsl:element name='a'>
-                                                            <xsl:attribute name="href"><xsl:value-of select="$datasetBaseUrl"/><xsl:value-of select="location"/></xsl:attribute>
+                                                            <xsl:attribute name="href"><xsl:value-of select="$datasetBaseUrl"/><xsl:value-of select="nx:location"/></xsl:attribute>
                                                             <xsl:attribute name="onclick">
                                                                 $(this).blur()
                                                             </xsl:attribute>
@@ -1760,7 +1760,7 @@
                                                             <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
                                                             <xsl:attribute name="data-placement">right</xsl:attribute>
                                                             <xsl:attribute name="data-html">true</xsl:attribute>
-                                                            <xsl:attribute name="title">Click to download &#013;<xsl:value-of select='name'/></xsl:attribute>
+                                                            <xsl:attribute name="title">Click to download &#013;<xsl:value-of select='nx:name'/></xsl:attribute>
                                                             <i class='fa fa-download fa-border param-button' style='margin-left:0;'/>
                                                         </xsl:element>
                                                     </td>
@@ -1813,7 +1813,7 @@
                                                         <td>
                                                             <xsl:variable name="dt">
                                                               <xsl:call-template name="tokenize-select">
-                                                                <xsl:with-param name="text" select="startTime"/>
+                                                              <xsl:with-param name="text" select="nx:startTime"/>
                                                                 <xsl:with-param name="delim">T</xsl:with-param>
                                                                 <xsl:with-param name="i" select="2"/>
                                                               </xsl:call-template>
@@ -1822,7 +1822,7 @@
                                                         </td>
                                                     </tr>
                                                     <!-- Loop through each setup value under the 'param' heading -->
-                                                    <xsl:for-each select="setup/param">
+                                                    <xsl:for-each select="nx:setup/nx:param">
 <!--                                                        <xsl:sort select="@name"/>
                                                             Don't sort here because xsl is case-sensitive, which isn't what we want
 -->
@@ -1985,7 +1985,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                                                     </xsl:call-template>
                                                 </th>
                                                 <xsl:choose>
-                                                    <xsl:when test="//dataset/format/text()">
+                                                    <xsl:when test="//nx:dataset/nx:format/text()">
                                                         <th id='filelist-format-col'>
                                                             Format
                                                             <xsl:call-template name="help-tip">
@@ -2000,11 +2000,11 @@ The textual data from the selected rows (not the actual files) can also be expor
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <xsl:for-each select="//dataset">
+                                            <xsl:for-each select="//nx:dataset">
                                                 <tr>
                                                     <td></td>
                                                     <xsl:element name="td">
-                                                        <xsl:value-of select="name"/>
+                                                        <xsl:value-of select="nx:name"/>
                                                     </xsl:element>
                                                     <td class='filepath'>
                                                         <code>
@@ -2016,7 +2016,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                                                                 <xsl:attribute name="target">_blank</xsl:attribute>
                                                                 <xsl:call-template name="get-path-of-file">
                                                                     <xsl:with-param name="absolute_filename">
-                                                                        <xsl:value-of select="location"/>
+                                                                        <xsl:value-of select="nx:location"/>
                                                                     </xsl:with-param>
                                                                 </xsl:call-template>
                                                             </a>
@@ -2033,12 +2033,12 @@ The textual data from the selected rows (not the actual files) can also be expor
                                                     </xsl:variable>
                                                     <td><xsl:value-of select="$dataset-type"/></td>
                                                     <xsl:choose>
-                                                        <xsl:when test="../dataset/format/text()">
-                                                            <td><xsl:value-of select="format/text()"/></td>
+                                                        <xsl:when test="../nx:dataset/nx:format/text()">
+                                                            <td><xsl:value-of select="nx:format/text()"/></td>
                                                         </xsl:when>
                                                     </xsl:choose>
                                                     <td class='text-center'>
-                                                        <xsl:variable name="json-tmp"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="preview"/></xsl:variable>
+                                                        <xsl:variable name="json-tmp"><xsl:value-of select="$previewBaseUrl"/><xsl:value-of select="nx:preview"/></xsl:variable>
                                                         <xsl:variable name="json-location"><xsl:value-of select="substring-before($json-tmp, '.thumb.png')"/>.json</xsl:variable>
                                                         <xsl:element name='a'>
                                                             <xsl:attribute name="href"><xsl:value-of select="$json-location"/></xsl:attribute>
@@ -2056,7 +2056,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                                                     <td class='text-center'>
                                                         <xsl:element name='a'>
                                                             <xsl:attribute name='class'>filelisting-dl-cell</xsl:attribute>
-                                                            <xsl:attribute name="href"><xsl:value-of select="$datasetBaseUrl"/><xsl:value-of select="location"/></xsl:attribute>
+                                                            <xsl:attribute name="href"><xsl:value-of select="$datasetBaseUrl"/><xsl:value-of select="nx:location"/></xsl:attribute>
                                                             <xsl:attribute name="onclick">
                                                                 $(this).blur()
                                                             </xsl:attribute>
@@ -2064,7 +2064,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                                                             <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
                                                             <xsl:attribute name="data-placement">left</xsl:attribute>
                                                             <xsl:attribute name="data-html">true</xsl:attribute>
-                                                            <xsl:attribute name="title">Click to download &#013;<xsl:value-of select='name'/></xsl:attribute>
+                                                            <xsl:attribute name="title">Click to download &#013;<xsl:value-of select='nx:name'/></xsl:attribute>
                                                             <i class='fa fa-download fa-border param-button' style='margin-left:0;'/>
                                                         </xsl:element>
                                                     </td>
@@ -3981,29 +3981,56 @@ The textual data from the selected rows (not the actual files) can also be expor
                          return formatted.substring(1, formatted.length-3);
                      }
                     
-                    // function to do XML export download
-                    const downloadXML = function() {
-                        let id = new URLSearchParams(window.location.search).get('id');
-                        let xml_url = '/rest/data/download/' + id + '/';
-                        
-                        fetch(xml_url)
-                        .then(resp => resp.text())
-                        // get text of response from CDCS API, run it through
-                        // prettifier, and then return a blob so we can download it
-                        .then(text => 
-                            new Blob([formatXml(text)], {type:'text/xml'}))
-                        // save blob to disk
-                        .then(blob => {
-                            const url = window.URL.createObjectURL(blob);
-                            const a = document.createElement('a');
-                            a.style.display = 'none';
-                            a.href = url;
-                            a.download = $('#xmlName').text();
-                            document.body.appendChild(a);
-                            a.click();
-                            window.URL.revokeObjectURL(url); 
-                        });
+                     const prepDownloadXML = async function() {
+                        if (window.location.href.includes('/pid/')) {
+                          // we're accessing via PID, so use API to get real id
+                          try{
+                            let response = await fetch(window.location.href, 
+                               {headers: {'Accept': 'application/json'}});
+                            let res = await response.json();
+                            //console.log(res);
+                            return res.id;
+                          }catch(err){
+                            alert(`There was an error trying to download the record XML: ${err}`);
+                            console.error(err);
+                          }
+                        } else {
+                          // this method doesn't work if we're accessing via PID 
+                          // since there's no ID URL parameter
+                          // we're accessing via regular ID
+                          let id = new URLSearchParams(window.location.search).get('id');
+                          return Promise.resolve(id);
+                        }
                     }
+                    
+                    const downloadXML = function() {
+                        let id = prepDownloadXML();
+                        //console.log(id);
+                        id.then(i => {
+                            //console.log(`id value inside then is: ${i}`);                                
+                            let xml_url = `/rest/data/download/${i}/`;  
+                            //console.log(`xml_url is: ${xml_url}`);                  
+                    
+                            fetch(xml_url)
+                                .then(resp => resp.text())
+                                // get text of response from CDCS API, run it through
+                                // prettifier, and then return a blob so we can download it
+                                .then(text => 
+                                    new Blob([formatXml(text)], {type:'text/xml'}))
+                                // save blob to disk
+                                .then(blob => {
+                                    const url = window.URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.style.display = 'none';
+                                    a.href = url;
+                                    a.download = $('#xmlName').text();
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    window.URL.revokeObjectURL(url); 
+                                })
+                        })
+                    }
+
                     $("#btn-xml-dl").on('click', downloadXML);                    
                     $('a#menu-tutorial').on('click', () => create_detail_tour());
                     
@@ -4241,10 +4268,10 @@ The textual data from the selected rows (not the actual files) can also be expor
                         <!-- count the number of dataset locations that end with this extension -->
                         <xsl:choose>
                             <xsl:when test="$global-count = 'true'">
-                                <xsl:value-of select="count(//dataset/location[$input = substring(., string-length() - string-length($input) + 1)])"/>                                
+                                <xsl:value-of select="count(//nx:dataset/nx:location[$input = substring(., string-length() - string-length($input) + 1)])"/>                                
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:value-of select="count(dataset/location[$input = substring(., string-length() - string-length($input) + 1)])"/>
+                                <xsl:value-of select="count(nx:dataset/nx:location[$input = substring(., string-length() - string-length($input) + 1)])"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </span>
@@ -4326,16 +4353,16 @@ The textual data from the selected rows (not the actual files) can also be expor
     
     <xsl:template name="parse-activity-contents">
         <xsl:choose>
-            <xsl:when test="setup/param[@name='Data Type']">
+            <xsl:when test="nx:setup/nx:param[@name='Data Type']">
                 <xsl:call-template name="string-replace-all">
-                    <xsl:with-param name="text" select="setup/param[@name='Data Type']/text()"/>
+                    <xsl:with-param name="text" select="nx:setup/nx:param[@name='Data Type']/text()"/>
                     <xsl:with-param name="replace" select="'_'" />
                     <xsl:with-param name="by" select="' '" />
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:variable name="this-aa-data-types">
-                    <xsl:for-each select="./dataset/meta[@name='Data Type']"><xsl:value-of select="."/><xsl:text> </xsl:text></xsl:for-each>
+                    <xsl:for-each select="./nx:dataset/nx:meta[@name='Data Type']"><xsl:value-of select="."/><xsl:text> </xsl:text></xsl:for-each>
                 </xsl:variable>
                 <xsl:variable name="deduped-data-types">
                     <xsl:call-template name="dedup-list">
