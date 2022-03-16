@@ -1011,9 +1011,21 @@
                         <button id="btn-copy-pid" type="button" class="btn btn-outline-dark btn-top-group"
                             data-toggle="tooltip" data-placement="top" 
                             title="Click here to copy this record's PID"
-                            onclick="copyToClipboard('#pid-to-copy')">
+                            onclick="copy_and_change_tt()">
                             <i class="fas fa-link menu-fa"></i> Copy record PID
                         </button>
+                        <script>
+                            let tt_text = "Click here to copy this record's PID";
+                            
+                            $('#btn-copy-pid').mouseout(() => {
+                                console.log('processing mouseout');
+                                setTimeout(() => {  
+                                    $('#btn-copy-pid').attr('data-original-title', tt_text);
+                                    $('#btn-copy-pid').tooltip('update');
+                                   // $('#btn-copy-pid').tooltip('show');
+                                }, 150);
+                            })
+                        </script>
                     </xsl:when>
                 </xsl:choose>
                 <button id="btn-previous-page" type="button" class="btn btn-outline-dark btn-top-group"
@@ -2159,6 +2171,14 @@ The textual data from the selected rows (not the actual files) can also be expor
                 const arrSum = arr => arr.reduce((a, b) => a + b, 0)
                 const arrAvg = arr => arrSum(arr) / arr.length
 
+                function copy_and_change_tt() {
+                    copyToClipboard('#pid-to-copy')
+                    let new_title = "Copied PID to clipboard!";
+                    $('#btn-copy-pid').attr('data-original-title', new_title);
+                    $('#btn-copy-pid').tooltip('update');
+                    $('#btn-copy-pid').tooltip('show');
+                }
+
                 // function to copy to clipboard
                 function copyToClipboard(element) {
                   var $temp = $("<input>");
@@ -2167,6 +2187,7 @@ The textual data from the selected rows (not the actual files) can also be expor
                   document.execCommand("copy");
                   $temp.remove();
                 }
+                
 
                 // Functions to enable/disable scrolling and add appropriate classes
                 var $body = $('body'),
