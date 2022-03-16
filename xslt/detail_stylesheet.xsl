@@ -78,6 +78,9 @@
         <xsl:variable name="title">
             <xsl:value-of select="nx:title"/>
         </xsl:variable>
+        <xsl:variable name="pid">
+            <xsl:value-of select="@pid"/>
+        </xsl:variable>
         <xsl:variable name="extension-strings">
             <xsl:for-each select="//nx:dataset/nx:location">
                 <xsl:call-template name="get-file-extension">
@@ -1000,6 +1003,19 @@
                         onclick="openModal('filelist-modal');">
                     <i class="fas fa-cloud-download-alt menu-fa"></i> Download files
                 </button>
+                <xsl:choose>
+                    <xsl:when test="$pid != ''">
+                        <span id='pid-to-copy' style='display: none;'>
+                            <xsl:value-of select="$pid"/>
+                        </span>
+                        <button id="btn-copy-pid" type="button" class="btn btn-outline-dark btn-top-group"
+                            data-toggle="tooltip" data-placement="top" 
+                            title="Click here to copy this record's PID"
+                            onclick="copyToClipboard('#pid-to-copy')">
+                            <i class="fas fa-link menu-fa"></i> Copy record PID
+                        </button>
+                    </xsl:when>
+                </xsl:choose>
                 <button id="btn-previous-page" type="button" class="btn btn-outline-dark btn-top-group"
                         data-toggle="tooltip" data-placement="top" 
                         title="Go back to the previous page">
@@ -2142,6 +2158,15 @@ The textual data from the selected rows (not the actual files) can also be expor
                 // functions to cacluate array average and sum:
                 const arrSum = arr => arr.reduce((a, b) => a + b, 0)
                 const arrAvg = arr => arrSum(arr) / arr.length
+
+                // function to copy to clipboard
+                function copyToClipboard(element) {
+                  var $temp = $("<input>");
+                  $("body").append($temp);
+                  $temp.val($(element).text()).select();
+                  document.execCommand("copy");
+                  $temp.remove();
+                }
 
                 // Functions to enable/disable scrolling and add appropriate classes
                 var $body = $('body'),
