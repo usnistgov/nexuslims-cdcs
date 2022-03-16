@@ -1,27 +1,54 @@
 /**
+ * Helper function to get the record id either from the URL, or if we're 
+ * accessing the record via PID, then by the API
+ */
+ const get_record_id = async function() {
+    if (window.location.href.includes('/pid/')) {
+      // we're accessing via PID, so use API to get real id
+      try{
+        let response = await fetch(window.location.href, 
+           {headers: {'Accept': 'application/json'}});
+        let res = await response.json();
+        // console.log(res);
+        return res.id;
+      }catch(err){
+        alert(`There was an error trying to get the record id: ${err}`);
+        console.error(err);
+      }
+    } else {
+      // this method doesn't work if we're accessing via PID 
+      // since there's no ID URL parameter
+      // we're accessing via regular ID
+      let id = new URLSearchParams(window.location.search).get('id');
+      return Promise.resolve(id);
+    }
+}
+
+/**
  * Get the URL to go to the edit page
  */
 openEditRecord = function() {
     var editRecordUrl = "/dashboard/edit-record";
-    let searchParams = new URLSearchParams(window.location.search)
-    var objectID = searchParams.get('id')
-
-    $.ajax({
-        url : editRecordUrl,
-        type : "POST",
-        dataType: "json",
-        data : {
-            "id": objectID
-        },
-        success: function(data){
-            // window.location = data.url;
-            window.open(data.url, '_blank')
-        },
-        error:function(data){
-            var myArr = JSON.parse(data.responseText);
-            $.notify(myArr.message, {style: myArr.tags });
-        }
-    });
+    let id = get_record_id();
+    id.then(objectID => {
+        // console.log(`Using record id ${objectID}`);
+        $.ajax({
+            url : editRecordUrl,
+            type : "POST",
+            dataType: "json",
+            data : {
+                "id": objectID
+            },
+            success: function(data){
+                // window.location = data.url;
+                window.open(data.url, '_blank')
+            },
+            error:function(data){
+                var myArr = JSON.parse(data.responseText);
+                $.notify(myArr.message, {style: myArr.tags });
+            }
+        });
+    })
 };
 
 // Set sidebar to open and set top programatically to fill underneath top nav
