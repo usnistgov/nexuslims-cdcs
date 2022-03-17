@@ -505,3 +505,42 @@ if ENABLE_SAML2_SSO_AUTH:
     # Configure Pysaml2
     SAML_CONFIG = load_saml_config_from_env(server_uri=SERVER_URI, base_dir=BASE_DIR)
     SAML_ACS_FAILURE_RESPONSE_FUNCTION = "core_main_app.views.user.views.saml2_failure"
+
+# configure handle server PIDs according to environment settings
+if ENABLE_HANDLE_PID:
+    hdl_user = f'300%3A{os.getenv("HANDLE_NET_PREFIX", "cdcs")}/' + \
+               f'{os.getenv("HANDLE_NET_USER", "ADMIN")}'
+    ID_PROVIDER_SYSTEMS = {
+        # "local": {
+        #     "class": "core_linked_records_app.utils.providers.local.LocalIdProvider",
+        #     "args": [],
+        # },
+        "handle.net": {  
+            "class": "core_linked_records_app.utils.providers.handle_net.HandleNetSystem",
+            "args": [
+                os.getenv("HANDLE_NET_URL", "https://handle-net.domain"),
+                hdl_user, 
+                os.getenv("HANDLE_NET_SECRET_KEY", "admin")
+            ],
+        }
+    }
+    ID_PROVIDER_PREFIXES = [os.getenv("HANDLE_NET_PREFIX", "cdcs")]
+    ID_PROVIDER_PREFIX_DEFAULT = ID_PROVIDER_PREFIXES[0]
+    ID_PROVIDER_PREFIX_BLOB = ID_PROVIDER_PREFIXES[0]
+    PID_XPATH = os.getenv("PID_XPATH", "Experiment.@pid")
+    AUTO_SET_PID = os.getenv("AUTO_SET_PID", "False").lower() == "true"
+
+    HANDLE_NET_RECORD_INDEX = os.getenv("HANDLE_NET_RECORD_INDEX", 1)
+    HANDLE_NET_ADMIN_DATA = {
+        "index": int(os.getenv("HANDLE_NET_ADMIN_INDEX", 100)),
+        "type": os.getenv("HANDLE_NET_ADMIN_TYPE", "HS_ADMIN"),
+        "data": {
+            "format": os.getenv("HANDLE_NET_ADMIN_DATA_FORMAT", "admin"),
+            "value": {
+                "handle": f"0.NA/{ID_PROVIDER_PREFIX_DEFAULT}",
+                "index": int(os.getenv("HANDLE_NET_ADMIN_DATA_INDEX", 200)),
+                "permissions": os.getenv("HANDLE_NET_ADMIN_DATA_PERMISSIONS", 
+                                         "011111110011"),
+            },
+        },
+    }

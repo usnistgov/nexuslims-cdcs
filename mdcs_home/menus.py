@@ -55,7 +55,7 @@ Menu.add_item(
 
 Menu.add_item(
     "nodropdown",
-    MenuItem("MARLIN Scheduler", 
+    MenuItem("MARLIN", 
              "https://***REMOVED***",
              icon="fish",
              iconClass="fas")
@@ -63,9 +63,17 @@ Menu.add_item(
 
 Menu.add_item(
     "nodropdown",
-    MenuItem("NEMO (CNST Instruments)", 
+    MenuItem("NEMO", 
              "https://***REMOVED***",
              icon="fish",
+             iconClass="fas")
+)
+
+Menu.add_item(
+    "nodropdown",
+    MenuItem("EM Community SharePoint", 
+             "https://***REMOVED***/",
+             icon="users",
              iconClass="fas")
 )
 

@@ -32,6 +32,8 @@ $('li > a:contains("MARLIN")')
     .attr("id", "menu-calendar")
 $('li > a:contains("NEMO")')
     .attr("id", "menu-nemo")
+$('li > a:contains("SharePoint")')
+    .attr("id", "menu-sharepoint")
 $('li > a:contains("Tutorial")')
     .attr("id", "menu-tutorial")
 $('li > a:contains("Help")')
@@ -151,6 +153,29 @@ function create_tour() {
         text: 'Click here to be brought to the NEMO reservation system for CNST instruments',
         attachTo: {
             element: '#menu-nemo',
+            on: 'bottom'
+        },
+        buttons: [{
+                text: '<i class="fa fa-arrow-left menu-fa"></i> Back',
+                classes: 'btn btn-default',
+                action: menu_tour.back,
+                label: 'Back'
+            },
+            {
+                text: 'Next <i class="fa fa-arrow-right menu-fa"></i>',
+                classes: 'btn btn-primary',
+                action: menu_tour.next,
+                label: 'Next'
+            }
+        ],
+    });
+
+    menu_tour.addStep({
+        id: 'tut-sharepoint',
+        title: 'Go to the EM community SharePoint site',
+        text: 'Click here to be brought to the Nexus Electron Microscopy Community SharePoint site (for documents, announcements, etc.)',
+        attachTo: {
+            element: '#menu-sharepoint',
             on: 'bottom'
         },
         buttons: [{

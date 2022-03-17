@@ -45,23 +45,23 @@
   <xsl:template match="nx:Experiment">
     <xsl:variable name="reservation-date-part">
       <xsl:call-template name="tokenize-select">
-        <xsl:with-param name="text" select="summary/reservationStart"/>
+        <xsl:with-param name="text" select="nx:summary/nx:reservationStart"/>
         <xsl:with-param name="delim">T</xsl:with-param>
         <xsl:with-param name="i" select="1"/>
       </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="firstfile-date-part">
       <xsl:call-template name="tokenize-select">
-        <xsl:with-param name="text" select="acquisitionActivity[1]/startTime"/>
+        <xsl:with-param name="text" select="nx:acquisitionActivity[1]/nx:startTime"/>
         <xsl:with-param name="delim">T</xsl:with-param>
         <xsl:with-param name="i" select="1"/>
       </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="title">
-      <xsl:value-of select="title"/>
+        <xsl:value-of select="nx:title"/>
     </xsl:variable>
     <xsl:variable name="extension-strings">
-      <xsl:for-each select="//dataset/location">
+        <xsl:for-each select="//nx:dataset/nx:location">
         <xsl:call-template name="get-file-extension">
           <xsl:with-param name="path">
             <xsl:value-of select="."/>
@@ -103,17 +103,17 @@
        </xsl:element>
        <xsl:text> </xsl:text>
        <xsl:variable name="instr-pid">
-         <xsl:value-of select="string(summary/instrument/@pid)"/>
+         <xsl:value-of select="string(nx:summary/nx:instrument/@pid)"/>
        </xsl:variable>
        <span class="badge list-record-badge">
          <xsl:attribute name="style">background-color:<xsl:for-each select="document('')">
              <xsl:value-of select="key('lookup.instr.color', $instr-pid)"/>
            </xsl:for-each> !important;</xsl:attribute>
-         <xsl:value-of select="summary/instrument"/>
+         <xsl:value-of select="nx:summary/nx:instrument"/>
        </span>
        <span class="badge list-record-badge">
-         <xsl:value-of select="count(//dataset)"/> data files in <xsl:value-of select="count(//acquisitionActivity)"/> activit<xsl:choose>
-           <xsl:when test="count(//acquisitionActivity) = 1">y</xsl:when>
+         <xsl:value-of select="count(//nx:dataset)"/> data files in <xsl:value-of select="count(//nx:acquisitionActivity)"/> activit<xsl:choose>
+           <xsl:when test="count(//nx:acquisitionActivity) = 1">y</xsl:when>
            <xsl:otherwise>ies</xsl:otherwise>
          </xsl:choose> </span>
         <i class="fa fa-cubes filetypes-icon" style="margin-left:0.75em; font-size: small;"
@@ -125,8 +125,8 @@
      <div class="experimenter-and-date">
        <span class="list-record-experimenter">
          <xsl:choose>
-           <xsl:when test="summary/experimenter">
-             <xsl:value-of select="summary/experimenter"/>
+           <xsl:when test="nx:summary/nx:experimenter">
+             <xsl:value-of select="nx:summary/nx:experimenter"/>
            </xsl:when>
            <xsl:otherwise>Unknown experimenter</xsl:otherwise>
          </xsl:choose>
@@ -156,9 +156,9 @@
        </span>
      </div>
       <xsl:choose>
-        <xsl:when test="summary/motivation/text()">
+        <xsl:when test="nx:summary/nx:motivation/text()">
           <div class="motivation-text">
-            <span style="font-style:italic;">Motivation: </span><xsl:value-of select="summary/motivation"/>
+            <span style="font-style:italic;">Motivation: </span><xsl:value-of select="nx:summary/nx:motivation"/>
           </div>
         </xsl:when>
       </xsl:choose>
@@ -554,7 +554,7 @@
           </xsl:choose>
           <span class="badge-left badge list-record-badge">
             <!-- count the number of dataset locations that end with this extension -->
-            <xsl:value-of select="count(//dataset/location[$input = substring(., string-length() - string-length($input) + 1)])"/>
+            <xsl:value-of select="count(//nx:dataset/nx:location[$input = substring(., string-length() - string-length($input) + 1)])"/>
           </span>
           <span class="badge-right badge list-record-badge">
             <xsl:value-of select="$input"/>

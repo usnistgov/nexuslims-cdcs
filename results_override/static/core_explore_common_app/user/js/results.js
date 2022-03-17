@@ -79,7 +79,7 @@ var getResultsPage = function(event) {
             // permission api calls for the edit button
             getDataPermission();
             // Add leave notice on links from loaded data
-            leaveNotice($("#results_" + nb_results_id.match(/(\d+)/)[0] + " a"));
+            //leaveNotice($("#results_" + nb_results_id.match(/(\d+)/)[0] + " a"));
             // show result_page by fading in
             result_page.fadeIn("normal", function() {
                 $(this).show();
