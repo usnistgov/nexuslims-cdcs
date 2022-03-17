@@ -142,7 +142,7 @@ i.results-icon {
     background-color: #f0ad4e !important;
 }
 
-.motivation-text {
+.motivation-text, .pid-row {
     font-size: medium;
     line-height: 125%;
 }

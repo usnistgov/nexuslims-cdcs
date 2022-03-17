@@ -1176,7 +1176,22 @@
                                     </xsl:choose>
                                     
                                 </div>
-                            </div>           
+                            </div>   
+                            <xsl:choose>
+                                <xsl:when test="$pid != ''">
+                                    <div class="row">
+                                        <div class="pid-row">
+                                            <span style="font-style:italic;">Persistent ID: </span>
+                                            <xsl:element name="a">
+                                                <xsl:attribute name="href">
+                                                    <xsl:value-of select="$pid"/>
+                                                </xsl:attribute>
+                                                <xsl:value-of select="$pid"/>
+                                            </xsl:element>
+                                        </div> 
+                                    </div>
+                                </xsl:when>
+                            </xsl:choose>
                         </div>
                         
                         <h3 id="res-info-header">Session Summary 
