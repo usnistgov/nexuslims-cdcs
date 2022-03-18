@@ -1365,7 +1365,7 @@
                                                 <td style='padding-left: 1.0em; padding-right: 1.0em;'><xsl:value-of select="$i"/></td>
                                                 <xsl:choose>
                                                     <xsl:when test="./nx:name/text()">
-                                                        <td><xsl:value-of select="./name"/></td>
+                                                        <td><xsl:value-of select="./nx:name"/></td>
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <td>
