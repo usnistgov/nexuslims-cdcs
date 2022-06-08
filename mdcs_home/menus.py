@@ -55,24 +55,24 @@ Menu.add_item(
 
 Menu.add_item(
     "nodropdown",
-    MenuItem("MARLIN", 
-             "https://***REMOVED***",
+    MenuItem("LINK 1",
+             "https://example.com",
              icon="fish",
              iconClass="fas")
 )
 
 Menu.add_item(
     "nodropdown",
-    MenuItem("NEMO", 
-             "https://***REMOVED***",
+    MenuItem("LINK 2",
+             "https://example.com",
              icon="fish",
              iconClass="fas")
 )
 
 Menu.add_item(
     "nodropdown",
-    MenuItem("EM Community SharePoint", 
-             "https://***REMOVED***/",
+    MenuItem("LINK 3",
+             "https://example.com",
              icon="users",
              iconClass="fas")
 )

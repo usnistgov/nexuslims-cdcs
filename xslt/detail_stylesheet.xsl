@@ -7,9 +7,9 @@
     
     <xsl:param name="xmlName" select="''"/>
 
-    <xsl:variable name="datasetBaseUrl">https://***REMOVED***/mmfnexus/</xsl:variable>
-    <xsl:variable name="previewBaseUrl">https://***REMOVED***/nexusLIMS/mmfnexus/</xsl:variable>
-    <xsl:variable name="sharepointBaseUrl">https://***REMOVED***/</xsl:variable>
+    <xsl:variable name="datasetBaseUrl">https://CHANGE.THIS.VALUE</xsl:variable>
+    <xsl:variable name="previewBaseUrl">https://CHANGE.THIS.VALUE</xsl:variable>
+    <xsl:variable name="sharepointBaseUrl">https://CHANGE.THIS.VALUE</xsl:variable>
 
     <xsl:variable name="month-num-dictionary">
         <month month-number="01">January</month>
