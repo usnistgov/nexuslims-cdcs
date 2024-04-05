@@ -1134,6 +1134,8 @@ Use it like:
                 
                 .slideshow-col {
                     padding: 0;
+                    margin-top: 1em;
+                    margin-bottom: -1em;
                 }
                 
                 .badge a {
